@@ -18,7 +18,7 @@
     box-shadow: 2px 2px 10px gray;
     width: 1000px;
     height: 95vh;
-    border-radius: 15px;
+    border-radius: 20px;
     padding: 30px;
     display: flex;
     align-items: center;
@@ -111,7 +111,9 @@
     padding: 0 5px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-bottom: 20px;
+    font-size: 15px;
 }
 
 .remember-me a {
