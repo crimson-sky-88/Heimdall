@@ -38,12 +38,6 @@ body {
     list-style: none;
 }
 
-.active {
-    border-bottom: 2px solid black;
-    border-top: 2px solid black;
-    border-radius: 10px;
-    color: black;
-}
 
 .navbar-links ul li a {
     text-align: center;
@@ -53,6 +47,13 @@ body {
 }
 
 .navbar-links ul li a:hover {
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+    border-radius: 10px;
+    color: black;
+}
+
+.navbar-links .active {
     border-bottom: 2px solid black;
     border-top: 2px solid black;
     border-radius: 10px;
