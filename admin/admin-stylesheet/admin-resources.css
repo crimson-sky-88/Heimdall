@@ -1,4 +1,4 @@
-/* Employee Tab */
+/* Employee / Employee Payroll Tab */
 
 .dashboard-container {
     display: flex;
@@ -95,4 +95,128 @@ thead tr th{
 .table-controls form button:hover {
     background: black;
     color: white;
+}
+
+/* Employee Data Pop Up */
+
+.pop-up-wrapper {
+    box-sizing: border-box;
+    width: 400px;
+    height: 600px;
+    background-color: #F1EEDC;
+    box-shadow: 1px 1px 5px gray;
+    border-radius: 20px;
+}
+
+.form-container {
+    box-sizing: inherit;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 1em;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em;
+}
+
+.form-container .form-header h3{
+    box-sizing: inherit;
+    padding: 2em;
+    font-weight: bold;
+    padding: 10px;
+    border-bottom: 1px solid black;
+}
+
+.form-container form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form-container form .input-group-registration {
+    margin-left: 8px;
+    margin-right: 3px;
+    width: 46%;
+    height: 45px;
+}
+
+.input-group-registration input {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: 1px solid black;
+    border-radius: 10px;
+    outline: none;
+    padding-left: 15px;
+    color: black;
+}
+
+.input-group-registration input::placeholder {
+    color: black;
+    font-size: 12px;
+}
+
+.input-group-registration-radio {
+    width: 100%;
+    height: 20px;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    column-gap: 20px;
+}
+
+.input-group-registration-radio label {
+    padding: 0.5em;
+    border: 1px black solid;
+    border-radius: 10px;
+}
+
+.input-group-registration-select {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.input-group-registration-select select {
+    width: 46%;
+    height: 100%;
+    background: transparent;
+    border: 1px solid black;
+    border-radius: 10px;
+    outline: none;
+    color: black;
+}
+
+.pop-up-form-control {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.pop-up-form-control button {
+    width: 46%;
+    height: 100%;
+    background: transparent;
+    border: 1px solid black;
+    border-radius: 20px;
+    outline: none;
+    color: black;
+}
+
+.pop-up-form-control button:hover {
+    background-color: black;
+    color: white;
+}
+
+.test {
+    border: 1px solid red;
 }

@@ -17,6 +17,7 @@
                                 <th>Department</th>
                                 <th>Job Position</th>
                                 <th>Contact Number</th>
+                                <th>Email</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -32,6 +33,7 @@
                                 <td>Albion Online</td>
                                 <td>Gatherer - Lumberjack</td>
                                 <td>00000000000</td>
+                                <td>chronicallypuyat9to5@gmail.com</td>
                             </tr>
                             <tr>
                                 <td>2</td>
@@ -45,6 +47,7 @@
                                 <td>Albion Online</td>
                                 <td>Gatherer - Skinner</td>
                                 <td>00000000000</td>
+                                <td>chronicallypuyat9to5@gmail.com</td>
                             </tr>
                             <tr>
                                 <td>3</td>
@@ -58,6 +61,7 @@
                                 <td>Albion Online</td>
                                 <td>Gatherer - Lumberjack</td>
                                 <td>00000000000</td>
+                                <td>chronicallypuyat9to5@gmail.com</td>
                             </tr>
                             <tr>
                                 <td>4</td>
@@ -71,6 +75,7 @@
                                 <td>Albion Online</td>
                                 <td>Gatherer - Miner</td>
                                 <td>00000000000</td>
+                                <td>chronicallypuyat9to5@gmail.com</td>
                             </tr>
                             <tr>
                                 <td>5</td>
@@ -84,6 +89,7 @@
                                 <td>Albion Online</td>
                                 <td>Gatherer - Miner</td>
                                 <td>00000000000</td>
+                                <td>chronicallypuyat9to5@gmail.com</td>
                             </tr>
                         </tbody>
                     </table>
