@@ -1,0 +1,98 @@
+/* Employee Tab */
+
+.dashboard-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2em;
+}
+
+.employee-table-wrapper {
+    width: 100%;
+    height: 100%;
+    display: inherit;
+    flex-direction: column;
+    row-gap: 1em;
+}
+
+.table-header {
+    font-size: 20px;
+}
+
+.table-container {
+    box-sizing: border-box;
+    display: inherit;
+    justify-content: center;
+    background-color: white;
+    border-radius: 10px;
+    height: 470px;
+    width: 1000px;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+.table-container table {
+    border-collapse: collapse;
+    margin: 0 0;
+    padding: 10px;
+    max-width: 470px;
+    max-width: 1000px;
+}
+
+.table-head {
+    position: sticky;
+    top: 0;
+}
+
+thead tr{
+    background-color: lightblue;
+    color: black;
+    text-align: left;
+}
+
+thead tr th{
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: normal;
+}
+
+.table-container td,
+.table-container th {
+    text-align: center;
+    padding: 12px 12px;
+    /* margin: 0 12px; */
+}
+
+.table-container tbody tr {
+    border-bottom: 1px lightblue solid;
+}
+
+.table-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding: 1em; */
+    margin-bottom: 0;
+}
+
+.table-controls form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 3em;
+}
+
+.table-controls form button {
+    padding: 1em;
+    height: 40px;
+    width: 200px;
+
+    outline: none;
+    border: black 1px solid;
+    border-radius: 20px;
+    background: none;
+}
+
+.table-controls form button:hover {
+    background: black;
+    color: white;
+}

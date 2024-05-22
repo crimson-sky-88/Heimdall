@@ -70,11 +70,6 @@ body {
     color: black;
 }
 
-.function-nav form button:hover {
-    background-color: #F3FFBD;
-    border-radius: 20px 0 0 20px;
-}
-
 .account-nav {
     display: flex;
     flex-direction: column;
@@ -101,6 +96,7 @@ body {
     color: black;
 }
 
+.function-nav form button:hover,
 .account-nav form button:hover {
     background-color: #F3FFBD;
     border-radius: 20px 0 0 20px;
