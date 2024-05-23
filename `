@@ -1,0 +1,91 @@
+[33mcommit aa3b8696c772095bd1b8c42ca8b945fa261e7f7a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mImplement_Backend[m[33m)[m
+Author: NightShocker03 <balitonztephen03@gmail.com>
+Date:   Fri May 24 01:35:34 2024 +0800
+
+    included 3 tabs/table for admin buttons
+
+[33mcommit 20c74b32203f0148d4fa0eeb53d8accb404e2cf4[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Kyle Daniel Javines <162819499+crimson-sky-88@users.noreply.github.com>
+Date:   Thu May 23 23:35:44 2024 +0800
+
+    Deleted dashboard.html
+    
+    redundant
+
+[33mcommit 906b76cb32065383a69275bfaea4c1576f3af494[m
+Author: Kyle Daniel Javines <javineskyle123@gmail.com>
+Date:   Thu May 23 23:17:17 2024 +0800
+
+    finished admin-side
+
+[33mcommit 88831fb81b0239b406ff4931acbe4a745da8aeeb[m
+Author: Kyle Daniel Javines <javineskyle123@gmail.com>
+Date:   Thu May 23 04:51:19 2024 +0800
+
+    designed first  pop-up window for account creation
+
+[33mcommit 00d62486d1eaf9486726373241a08deb02abafe3[m
+Merge: 1da067b 913dd8f
+Author: Kyle Daniel Javines <162819499+crimson-sky-88@users.noreply.github.com>
+Date:   Wed May 22 20:24:31 2024 +0800
+
+    Merge pull request #2 from crimson-sky-88/Dashbooard
+    
+    Dashbooard
+
+[33mcommit 913dd8faa8050d72a6fba4b8c9b8f0e3c14aa12f[m[33m ([m[1;31morigin/Dashbooard[m[33m)[m
+Author: Kyle Daniel Javines <javineskyle123@gmail.com>
+Date:   Wed May 22 20:13:08 2024 +0800
+
+    implemented dashboard designs with static data on employee and employee payroll tab
+
+[33mcommit a11124056293f1c7fd95b6c38365e657c4d1b6bf[m
+Author: Kyle Daniel Javines <javineskyle123@gmail.com>
+Date:   Wed May 22 10:24:40 2024 +0800
+
+    employee dashboard structure
+
+[33mcommit 1da067bd1c9d5e926b67d8fff11880590a451c4f[m
+Author: Kyle Daniel Javines <javineskyle123@gmail.com>
+Date:   Tue May 21 17:10:05 2024 +0800
+
+    checkpoint commit because idk what im doing and i forgot to branch out
+
+[33mcommit 225e3be3ba7177ff49daf354b7a7491acdf219a4[m
+Merge: d4c5e57 fccd116
+Author: Kyle Daniel Javines <162819499+crimson-sky-88@users.noreply.github.com>
+Date:   Mon Apr 29 22:07:01 2024 +0800
+
+    Merge pull request #1 from crimson-sky-88/login-page
+    
+    Login page (80%)
+
+[33mcommit fccd11629f71cb26b78a7af0d347f7fe133ab511[m
+Author: Kyle Daniel Javines <javineskyle123@gmail.com>
+Date:   Thu Apr 18 08:55:04 2024 +0800
+
+    backup
+
+[33mcommit 9ed72d6b96a30956233b0f852414f5c90cd63bfc[m
+Author: Kyle Daniel Javines <javineskyle123@gmail.com>
+Date:   Sun Apr 14 01:05:46 2024 +0800
+
+    Incomplete implementation of carousel on login page, partial progress on navbar in dashboard page
+
+[33mcommit 958550ed378b574b833e910ab853a74c98b630d2[m
+Author: Kyle Daniel Javines <javineskyle123@gmail.com>
+Date:   Fri Apr 12 20:08:32 2024 +0800
+
+    implemented designs on the login form, logo still need work
+
+[33mcommit d56df97fa9dd214b7250d8c84fece2a7010448e2[m
+Author: Kyle Daniel Javines <javineskyle123@gmail.com>
+Date:   Fri Apr 12 11:49:45 2024 +0800
+
+    created layout for the login page, design is still lacking
+
+[33mcommit d4c5e57316d8981fb54b504ecd826a20e4f0d8ed[m
+Author: Kyle Daniel Javines <javineskyle123@gmail.com>
+Date:   Thu Apr 11 14:57:34 2024 +0800
+
+    Initial Commit
