@@ -19,11 +19,11 @@
             <h2 class="site-name">Heimdall</h2>
             <div class="function-nav">
                 <h3>Navigation</h3>
-                <form action="" class="">
-                    <button id="dashboardButton">Dashboard</button>
-                    <button id="employeesButton">Employees</button>
-                    <button id="employeePayrollButton">Employee Payroll</button>
-                    <button id="logOutButton">Log Out</button>
+                <form action="admin-dashboard.php" method="post" class="">
+                    <button name="dashboardButton" type="submit">Dashboard</button>
+                    <button name="employeesButton" type="submit">Employees</button>
+                    <button name="employeePayrollButton" type="submit">Employee Payroll</button>
+                    <button name="logOutButton">Log Out</button>
                 </form>
             </div>
         </div>
@@ -33,6 +33,7 @@
             <!--
 
                 // wait for button pressed          // Dashboard, Employees, Employees Payroll, Log Out
+                    // create an identifyer (on what button is pressed) then only that tab/table is live(where query data is put)
 
                 // load right tab                 // hide/show
                     // load dynamic table
@@ -46,11 +47,10 @@
             -->
 
             <?php 
-            
-                include_once 'snippets/dashboard.php';
-                include_once 'snippets/employees.php';
-                include_once 'snippets/employee-payroll.php';
-            
+
+                //
+                include_once 'snippets/backend/tabLoader.php';
+
             ?>
 
         </div>

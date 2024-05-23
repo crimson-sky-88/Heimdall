@@ -1,4 +1,4 @@
-<div class="employee-table-wrapper" style="display:none">
+<div class="employee-table-wrapper" style="display:none">                   <!-- CAN REMOVE -->
                 <div class="table-header">
                     <h3>Employee Payroll</h3>
                 </div>
@@ -6,7 +6,7 @@
 
                 <?php
                 
-                    include 'tableForAll.php';
+                    include 'backend/tableForAll.html';
             
                 ?>
 

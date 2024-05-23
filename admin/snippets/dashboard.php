@@ -1,4 +1,4 @@
-<div class="dashboard-content-wrapper" style="display:none">
+<div class="dashboard-content-wrapper" style="display:none">            <!-- CAN REMOVE -->
                 <div class="employee-stat">
                     <div class="stat-container">
                         <p>Total Employees</p>
@@ -22,7 +22,7 @@
 
                         <?php
                 
-                            include 'tableForAll.php';
+                            include 'backend/tableForAll.html';
                     
                         ?>
                         
