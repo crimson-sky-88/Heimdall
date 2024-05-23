@@ -40,7 +40,6 @@ body {
     font-weight: 900;
     font-style: normal;
     padding: 0.5em;
-    border-bottom: 1px solid black;
 }
     
 .nav-tab > * {
@@ -73,36 +72,8 @@ body {
     color: black;
 }
 
-.account-nav {
-    display: flex;
-    flex-direction: column;
-}
-
-.account-nav > * {
-    margin: 0;
-    padding: 0.5em 0;
-}
-
-.account-nav form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    row-gap: 10px;
-}
-
-.account-nav form button {
-    width: 100%;
-    height: 40px;
-    background: transparent;
-    outline: none;
-    border: none;
-    color: black;
-}
-
-.function-nav form button:hover,
-.account-nav form button:hover {
+.function-nav form button:hover {
     font-weight: bold;
-    border-bottom: 1px solid black;
 }
 
 .dashboard-container {
