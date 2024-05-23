@@ -18,9 +18,9 @@
                         <div class="table-header">
                             <h3>Attendance List</h3>
                         </div>
-                        <div class="attendance-table-container">
+                        <div class="table-container">
                             <table>
-                                <thead class="table-head">
+                                <thead id="tableBody" class="table-head">          <!-- modified -->
                                     <tr>
                                         <td>Employee ID</td>
                                         <td>Employee Name</td>
@@ -29,7 +29,7 @@
                                         <td>Clock-in Time</td>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="tableBody">                              <!-- modified -->
                                     <tr>
                                         <td>1</td>
                                         <td>Jefferson Manglicmot Franco</td>

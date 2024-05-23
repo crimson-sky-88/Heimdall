@@ -20,16 +20,39 @@
             <div class="function-nav">
                 <h3>Navigation</h3>
                 <form action="" class="">
-                    <button>Dashboard</button>
-                    <button>Employees</button>
-                    <button>Employee Payroll</button>
-                    <button>Log Out</button>
+                    <button id="dashboardButton">Dashboard</button>
+                    <button id="employeesButton">Employees</button>
+                    <button id="employeePayrollButton">Employee Payroll</button>
+                    <button id="logOutButton">Log Out</button>
                 </form>
             </div>
         </div>
         <div class="dashboard-container">
             <!-- PHP script to display tab contents upon click goes here -->
             
+            <!--
+
+                // wait for button pressed          // Dashboard, Employees, Employees Payroll, Log Out
+
+                // load right tab                 // hide/show
+                    // load dynamic table
+                
+                // query default values into table
+                    // default: load everything unfiltered            // ex. load all employee record in employee table from database
+                        // can be filtered?
+                
+                // 
+
+            -->
+
+            <?php 
+            
+                include_once 'snippets/dashboard.php';
+                include_once 'snippets/employees.php';
+                include_once 'snippets/employee-payroll.php';
+            
+            ?>
+
         </div>
     </div>
 </body>

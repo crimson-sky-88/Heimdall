@@ -4,7 +4,7 @@
                 </div>
                 <div class="table-container">
                     <table>
-                        <thead class="table-head">
+                        <thead id="tableHead" class="table-head">           <!-- modified -->
                             <tr>
                                 <td>Employee ID</td>
                                 <td>Employee Name</td>
@@ -17,7 +17,7 @@
                                 <td>Gross Pay (Month)</td>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="tableBody">                                  <!-- modified -->
                             <tr>
                                 <td>1</td>
                                 <td>Jefferson Manglicmot Franco</td>

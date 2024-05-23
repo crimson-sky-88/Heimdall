@@ -4,7 +4,7 @@
                 </div>
                 <div class="table-container">
                     <table>
-                        <thead class="table-head">
+                        <thead id="tableHead" class="table-head">               <!-- modified -->
                             <tr>
                                 <th>Employee ID</th>
                                 <th>First Name</th>
@@ -20,7 +20,7 @@
                                 <th>Email</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="tableBody">                          <!-- modified -->
                             <tr>
                                 <td>1</td>
                                 <td>Jefferson</td>
