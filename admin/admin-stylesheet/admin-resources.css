@@ -161,6 +161,7 @@ thead tr th{
     height: 100%;
     display: flex;
     flex-wrap: wrap;
+    gap: 5px;
 }
 
 .form-container form .input-group-registration {
@@ -180,6 +181,11 @@ thead tr th{
     outline: none;
     padding-left: 15px;
     color: black;
+}
+
+.input-group-registration input:disabled {
+    background-color: gainsboro;
+
 }
 
 .input-group-registration input::placeholder {
@@ -207,8 +213,10 @@ thead tr th{
     width: 100%;
     height: 40px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 10px;
 }
 
 .input-group-registration-select select {
