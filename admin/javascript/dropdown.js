@@ -1,17 +1,18 @@
 //Drop Down
 var lookup = {
-    'albion-online': ['Gatherer - Lumberjack', 'Gatherer - Harvester', 'Gatherer - Skinner', 'Gatherer - Fisherman', 'Gatherer - Miner', 'Gatherer - Quarrier'],
-    'league-of-legends': ['Top Laner', 'Mid Laner', 'Jungler', 'Bot Laner', 'Support'],
-    'minecraft': ['Gatherer', 'Builder', 'Crafter', 'Adventurer'],
+    'Albion Online': ['Gatherer - Lumberjack', 'Gatherer - Harvester', 'Gatherer - Skinner', 'Gatherer - Fisherman', 'Gatherer - Miner', 'Gatherer - Quarrier'],
+    'League of Legends': ['Top Laner', 'Mid Laner', 'Jungler', 'Bot Laner', 'Support'],
+    'Minecraft': ['Gatherer', 'Builder', 'Crafter', 'Adventurer'],
     };
 
-    $('#departments').on('change', function() {
+$('#departDropDownPopUp').on('change', function() {
    
     var selectValue = $(this).val();
    
-    $('#positions').empty();
+    $('#jobPosiDropDownPopUp').empty();
     
     for (i = 0; i < lookup[selectValue].length; i++) {
-        $('#positions').append("<option value='" + lookup[selectValue][i] + "'>" + lookup[selectValue][i] + "</option>");
+        $('#jobPosiDropDownPopUp').append("<option value='" + lookup[selectValue][i] + "'>" + lookup[selectValue][i] + "</option>");
     }
 });
+

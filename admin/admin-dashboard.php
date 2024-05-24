@@ -48,13 +48,30 @@
 
             <?php 
 
-                //
                 include_once 'snippets/backend/tabLoader.php';
 
             ?>
 
         </div>
+
     </div>
+
+    <?php 
+        
+        include_once 'snippets/employee-data-pop-up.php';
+    
+    ?>
+
+    <footer>
+        <?php 
+            require '../admin/snippets/footer.php';
+        ?>
+    </footer>
+
+    <script src="snippets/backend/adminFunctions.js"> </script>
+    
+
 </body>
+
 
 </html>

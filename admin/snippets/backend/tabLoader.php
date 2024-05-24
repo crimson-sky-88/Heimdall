@@ -1,14 +1,14 @@
 <?php
-    include_once 'dynamicTableLoader.php';
+    //include_once 'dynamicTableLoader.php';
 
     // DYNAMIC TAB
-    {   // disgusting                                                           // including/linking to another file doesnt seem to work
+    {   // disgusting                                                           // no time for cool lookin code 
 
         ob_start();                                                             // for detecting and removing echo values
 
         if(isset($_POST["dashboardButton"])){
             ob_end_clean();                                                     // remove all echo values from cache
-    
+                                // NAME IS USELESS IN TD!!!!
             echo"
                 <div class='dashboard-content-wrapper'>
                     <div class='employee-stat'>
@@ -43,7 +43,7 @@
                             <option value='Support'> Support </option>
                         </select>
                     </form>
-
+                    
                     <div class='attendance-table'>
                         <div class='employee-table-wrapper'>
                             <div class='table-header'>
@@ -51,11 +51,94 @@
                             </div>
                             <div class='attendance-table-container'>
                 
-            ";
+            <table>
+            <thead id='tableHead' class='table-head'>
+                <tr>
+                    <th>First Name</th>
+                    <th>Middle Name</th>
+                    <th>Last Name</th>
+                    <th>Extension</th>
+                    <th>Age</th>
+                    <th>Sex</th>
+                    <th>Address</th>
+                    <th>Department</th>
+                    <th>Job Position</th>
+                    <th>Contact Number</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody id='tableBody'>  
+                <tr onclick='highlightSelectedRow(this)'>
+                    <td id='First Name'>Jefferson</td>
+                    <td id='Middle Name'>Manglicmot</td>
+                    <td id='Last Name'>Franco</td>
+                    <td id='Extension'>N/A</td>
+                    <td id='Age'>21</td>
+                    <td id='Sex'>Male</td>
+                    <td id='Address'>Purok 3, Brgy. West Dirita, San Antonio, Zambales</td>
+                    <td id='Department'>Albion Online</td>
+                    <td id='Job Position'>Gatherer - Lumberjack</td>
+                    <td id='Contact Number'>00000000000</td>
+                    <td id='Email'>chronicallypuyat9to5@gmail.com</td>
+                </tr>
+                <tr onclick='highlightSelectedRow(this)'>
+                    <td id='First Name'>Justin Chris</td>
+                    <td id='Middle Name'>Apostol</td>
+                    <td id='Last Name'>De Leon</td>
+                    <td id='Extension'>N/A</td>
+                    <td id='Age'>21</td>
+                    <td id='Sex'>Male</td>
+                    <td id='Address'>Ibang planeta</td>
+                    <td id='Department'>Albion Online</td>
+                    <td id='Job Position'>Gatherer - Skinner</td>
+                    <td id='Contact Number'>00000000000</td>
+                    <td id='Email'>chronicallypuyat9to5@gmail.com</td>
+                </tr>
+                <tr onclick='highlightSelectedRow(this)'>
+                    <td id='First Name'>Marvine Ray</td>
+                    <td id='Middle Name'>Abarra</td>
+                    <td id='Last Name'>Fernandez</td>
+                    <td id='Extension'>N/A</td>
+                    <td id='Age'>21</td>
+                    <td id='Sex'>Male</td>
+                    <td id='Address'>Ibang planeta</td>
+                    <td id='Department'>Albion Online</td>
+                    <td id='Job Position'>Gatherer - Lumberjack</td>
+                    <td id='Contact Number'>00000000000</td>
+                    <td id='Email'>chronicallypuyat9to5@gmail.com</td>
+                </tr>
+                <tr onclick='highlightSelectedRow(this)'>
+                    <td id='First Name'>Alhine Stephen</td>
+                    <td id='Middle Name'>Presto</td>
+                    <td id='Last Name'>Baliton</td>
+                    <td id='Extension'>N/A</td>
+                    <td id='Age'>21</td>
+                    <td id='Sex'>Male</td>
+                    <td id='Address'>Ibang planeta</td>
+                    <td id='Department'>Albion Online</td>
+                    <td id='Job Position'>Gatherer - Miner</td>
+                    <td id='Contact Number'>00000000000</td>
+                    <td id='Email'>chronicallypuyat9to5@gmail.com</td>
+                </tr>
+                <tr onclick='highlightSelectedRow(this)'>
+                    <td id='First Name'>Kyle Daniel</td>
+                    <td id='Middle Name'>Gatpandan</td>
+                    <td id='Last Name'>Javines</td>
+                    <td id='Extension'>N/A</td>
+                    <td id='Age'>21</td>
+                    <td id='Sex'>Male</td>
+                    <td id='Address'>Ibang planeta</td>
+                    <td id='Department'>Albion Online</td>
+                    <td id='Job Position'>Gatherer - Miner</td>
+                    <td id='Contact Number'>00000000000</td>
+                    <td id='Email'>chronicallypuyat9to5@gmail.com</td>
+            </tr>
+            </tbody>
+        </table>
 
-            loadTable();
+            
 
-            echo"
+            
             
                             </div>
                         </div>
@@ -70,44 +153,104 @@
             ob_end_clean();
     
             echo"
-                <div class='employee-table-wrapper'>
-                    <div class='table-header'>
-                        <h3>Employees</h3>
-                    </div>
-
-                    <form action='admin-dashboard.php' method='post'>
-                        <select id='departDropDownPopUp'>
-                            <option value='Department'> Department </option>
-                            <option value='Lumberjack'> Lumberjack </option>
-                            <option value='Miner'> Miner </option>
-                            <option value='Skinner'> Skinner </option>
-                            <option value='Harverster'> Harverster </option>
-                        </select>
-                        <select id='jobPosiDropDownPopUp'>
-                            <option value='Job Position'> Job Position </option>
-                            <option value='Top'> Top </option>
-                            <option value='Jungler'> Jungler </option>
-                            <option value='Mid'> Mid </option>
-                            <option value='Bottom'> Bottom </option>
-                            <option value='Support'> Support </option>
-                        </select>
-                    </form>
-
-                    <div class='table-container'>
-                ";
-                
-                loadTable();
-
-                echo"
-                    </div>
-                    <div class='table-controls'>
-                        <form action=''>
-                            <button id='addEmployee'>Add Employee</button>
-                            <button id='editData'>Edit Employee</button>
-                            <button id='deleteData'>Delete Employee</button>
-                        </form>
-                    </div>
-                </div>
+            <div class='employee-table-wrapper'>
+            <div class='table-header'>
+                <h3>Employees</h3>
+            </div>
+            <div class='table-container'>
+            <table>
+                <thead id='tableHead' class='table-head'>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Middle Name</th>
+                        <th>Last Name</th>
+                        <th>Extension</th>
+                        <th>Age</th>
+                        <th>Sex</th>
+                        <th>Address</th>
+                        <th>Department</th>
+                        <th>Job Position</th>
+                        <th>Contact Number</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody id='tableBody'>
+                    <tr onclick='highlightSelectedRow(this)'>
+                        <td id='First Name'>Jefferson</td>
+                        <td id='Middle Name'>Manglicmot</td>
+                        <td id='Last Name'>Franco</td>
+                        <td id='Extension'>N/A</td>
+                        <td id='Age'>21</td>
+                        <td id='Sex'>Male</td>
+                        <td id='Address'>Purok 3, Brgy. West Dirita, San Antonio, Zambales</td>
+                        <td id='Department'>Albion Online</td>
+                        <td id='Job Position'>Gatherer - Lumberjack</td>
+                        <td id='Contact Number'>00000000000</td>
+                        <td id='Email'>chronicallypuyat9to5@gmail.com</td>
+                    </tr>
+                    <tr onclick='highlightSelectedRow(this)'>
+                        <td id='First Name'>Justin Chris</td>
+                        <td id='Middle Name'>Apostol</td>
+                        <td id='Last Name'>De Leon</td>
+                        <td id='Extension'>N/A</td>
+                        <td id='Age'>21</td>
+                        <td id='Sex'>Male</td>
+                        <td id='Address'>Ibang planeta</td>
+                        <td id='Department'>Albion Online</td>
+                        <td id='Job Position'>Gatherer - Skinner</td>
+                        <td id='Contact Number'>00000000000</td>
+                        <td id='Email'>chronicallypuyat9to5@gmail.com</td>
+                    </tr>
+                    <tr onclick='highlightSelectedRow(this)'>
+                        <td id='First Name'>Marvine Ray</td>
+                        <td id='Middle Name'>Abarra</td>
+                        <td id='Last Name'>Fernandez</td>
+                        <td id='Extension'>N/A</td>
+                        <td id='Age'>21</td>
+                        <td id='Sex'>Male</td>
+                        <td id='Address'>Ibang planeta</td>
+                        <td id='Department'>Albion Online</td>
+                        <td id='Job Position'>Gatherer - Lumberjack</td>
+                        <td id='Contact Number'>00000000000</td>
+                        <td id='Email'>chronicallypuyat9to5@gmail.com</td>
+                    </tr>
+                    <tr onclick='highlightSelectedRow(this)'>
+                        <td id='First Name'>Alhine Stephen</td>
+                        <td id='Middle Name'>Presto</td>
+                        <td id='Last Name'>Baliton</td>
+                        <td id='Extension'>N/A</td>
+                        <td id='Age'>21</td>
+                        <td id='Sex'>Male</td>
+                        <td id='Address'>Ibang planeta</td>
+                        <td id='Department'>Albion Online</td>
+                        <td id='Job Position'>Gatherer - Miner</td>
+                        <td id='Contact Number'>00000000000</td>
+                        <td id='Email'>chronicallypuyat9to5@gmail.com</td>
+                    </tr>
+                    <tr onclick='highlightSelectedRow(this)'>
+                        <td id='First Name'>Kyle Daniel</td>
+                        <td id='Middle Name'>Gatpandan</td>
+                        <td id='Last Name'>Javines</td>
+                        <td id='Extension'>N/A</td>
+                        <td id='Age'>21</td>
+                        <td id='Sex'>Male</td>
+                        <td id='Address'>Ibang planeta</td>
+                        <td id='Department'>Albion Online</td>
+                        <td id='Job Position'>Gatherer - Miner</td>
+                        <td id='Contact Number'>00000000000</td>
+                        <td id='Email'>chronicallypuyat9to5@gmail.com</td>
+                </tr>
+                </tbody>
+            </table>
+            </div>
+            <div class='table-controls'>
+                <form action=''>
+                    <button id='addEmployee' type='button' onclick='addEmployeee()'>Add Employee</button>
+                    <button id='editData' type='button' onclick='editDataa()'>Edit Employee</button>
+                    <button id='deleteData' type='button' onclick='deleteDataa()'>Delete Employee</button>
+                </form>
+            </div>
+        </div>
                 ";  
     
         }
@@ -141,16 +284,85 @@
                     </form>
 
                     <div class='table-container'>
-                ";
+                
+                    <table>
+                    <thead id='tableHead' class='table-head'>
+                        <tr>
+                            <td>Employee ID</td>
+                            <td>Employee Name</td>
+                            <td>Department</td>
+                            <td>Job Position</td>
+                            <td>Wage Per Hour</td>
+                            <td>Total Hours (Week)</td>
+                            <td>Gross Pay (Week)</td>
+                            <td>Total Hours (Month)</td>
+                            <td>Gross Pay (Month)</td>
+                        </tr>
+                    </thead>
+                    <tbody id='tableBody'>
+                        <tr onclick='highlightSelectedRow(this)'>
+                            <td>1</td>
+                            <td>Jefferson Manglicmot Franco</td>
+                            <td>League of Legends</td>
+                            <td>Top</td>
+                            <td>$5</td>
+                            <td>72</td>
+                            <td>$360</td>
+                            <td>288</td>
+                            <td>$1440</td>
+                        </tr>
+                        <tr onclick='highlightSelectedRow(this)'>
+                            <td>2</td>
+                            <td>Justin Chris Apostol De Leon</td>
+                            <td>Albion Online</td>
+                            <td>Gatherer - Skinner</td>
+                            <td>$5</td>
+                            <td>72</td>
+                            <td>$360</td>
+                            <td>288</td>
+                            <td>$1440</td>
+                        </tr>
+                        <tr onclick='highlightSelectedRow(this)'>
+                            <td>3</td>
+                            <td>Marvine Ray Abarra Fernandez</td>
+                            <td>Albion Online</td>
+                            <td>Gatherer - Lumberjack</td>
+                            <td>$5</td>
+                            <td>72</td>
+                            <td>$360</td>
+                            <td>288</td>
+                            <td>$1440</td>
+                        </tr>
+                        <tr onclick='highlightSelectedRow(this)'>
+                            <td>4</td>
+                            <td>Alhine Stephen Presto Baliton</td>
+                            <td>Minecraft</td>
+                            <td>Builder</td>
+                            <td>$5</td>
+                            <td>72</td>
+                            <td>$360</td>
+                            <td>288</td>
+                            <td>$1440</td>
+                        </tr>
+                        <tr onclick='highlightSelectedRow(this)'>
+                            <td>5</td>
+                            <td>Kyle Daniel Gatpandan Javines</td>
+                            <td>Minecraft</td>
+                            <td>Gatherer</td>
+                            <td>$5</td>
+                            <td>72</td>
+                            <td>$360</td>
+                            <td>288</td>
+                            <td>$1440</td>
+                        </tr>
+                    </tbody>
+                </table>
 
-                loadTable();
-
-                echo"
                     </div>
                     <div class='table-controls'>
                         <form action=''>
-                            <button>Edit Payroll Data</button>
-                            <button>Print Payroll Data</button>
+                            <button type='button'>Edit Payroll Data</button>
+                            <button type='button'>Print Payroll Data</button>
                         </form>
                     </div>
                 </div>

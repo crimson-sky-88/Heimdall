@@ -8,17 +8,18 @@
             $departDropDownPopUp = $_POST["departDropDownPopUp"];
             $jobPosiDropDownPopUp = $_POST["jobPosiDropDownPopUp"];
 
+            //if departDropDownPopUp && jobPosiDropDownPopUp == "" {dont run}
             $result = outputQuery("table1", $departDropDownPopUp, $jobPosiDropDownPopUp);         // CHANGE
 
             $fields = $result->fetch_field();                   // returns array of fields                      // just text
             
-            echo "<thead class='table-head'>";
+            echo "<thead id='tableHead' class='table-head'>";
                 dynamicNewField($fields);          // put all fields in 
             echo "</thead>";
 
-            echo "<tbody>";
+            echo "<tbody> id='tableBody'";
             while($row = $result->fetch_assoc()){               // loops until no more array/row data in $result
-                echo "<tr>";
+                echo "<tr onclick='highlightSelectedRow(this)'>";
                     dynamicNewRow($row);
                 echo "</tr>";
             };
@@ -42,7 +43,7 @@
 
             for($i = 0; $i < sizeof($rowData); $i++){
 
-                echo "<td>" + $rowData[$i] + "</td>";
+                echo "<td name=''>" + $rowData[$i] + "</td>";
 
             };
 
