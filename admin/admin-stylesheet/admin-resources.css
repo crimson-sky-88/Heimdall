@@ -13,10 +13,32 @@
     display: inherit;
     flex-direction: column;
     row-gap: 1em;
+    background: #F1EEDC;
+    padding: 1em;
+    border-radius: 20px;
+    box-shadow: 1px 1px 5px gray;
 }
 
 .table-header {
-    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.table-header form{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.table-header form select {
+    padding: 0.5em;
+    background: transparent;
+    border: 1px solid black;
+    border-radius: 10px;
+    outline: none;
+    color: black;
 }
 
 .attendance-table-container,

@@ -1,7 +1,18 @@
 <div class="employee-table-wrapper">
-                <div class="table-header">
-                    <h3>Employee Payroll</h3>
-                </div>
+                        <div class="table-header">
+                            <h3>Attendance List</h3>
+                            <form action="">
+                                <select id="Departments">
+                                    <option value="" disabled selected>Department</option>
+                                    <option value="albion-online">Albion Online</option>
+                                    <option value="league-of-legends">League of Legends</option>
+                                    <option value="minecraft">Minecraft</option>
+                                </select>
+                                <select  id="positions">
+                                    <option value="" disabled selected>Job Position</option>
+                                </select>
+                            </form>
+                        </div>
                 <div class="table-container">
                     <table>
                         <thead class="table-head">
