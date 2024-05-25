@@ -3,13 +3,10 @@
     include_once 'mysqlConn.php';                       // mysql connection
 
     // LOAD TABLE
-        function loadTable(){                        // this is for >> showing employee salary, employees, timeIn/timeOut = dashboard
+        function loadTable($result){                        // this is for >> showing employee salary, employees, timeIn/timeOut = dashboard
 
             $departDropDownPopUp = $_POST["departDropDownPopUp"];
             $jobPosiDropDownPopUp = $_POST["jobPosiDropDownPopUp"];
-
-            //if departDropDownPopUp && jobPosiDropDownPopUp == "" {dont run}
-            $result = outputQuery("table1", $departDropDownPopUp, $jobPosiDropDownPopUp);         // CHANGE
 
             $fields = $result->fetch_field();                   // returns array of fields                      // just text
             
@@ -67,7 +64,7 @@
 
     // QUERY TABLE DATA from database
 
-    function outputQuery($table, $departValue, $jobPosiValue){                             // run if table is shown, table is updated/popUp data is modified
+    function outputQueryDashboard($table, $departValue, $jobPosiValue){                             // run if table is shown, table is updated/popUp data is modified
 
         $queryy = "select * from " . $table;
         if($departValue != "Department"){                                                  // should filter if selected nothing         / Department is default == nothing
@@ -84,6 +81,13 @@
         $result = mysqlConn()->query($queryy);
         
         return $result;
+    }
+
+    function outputQuerySalaries($table, $departValue, $jobPosiValue){
+
+        $queryy = "";
+
+        return $queryy;
     }
 
     // QUERY TABLE DATA to database

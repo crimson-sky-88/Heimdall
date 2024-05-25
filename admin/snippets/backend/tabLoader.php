@@ -8,7 +8,11 @@
 
         if(isset($_POST["dashboardButton"])){
             ob_end_clean();                                                     // remove all echo values from cache
-                                // NAME IS USELESS IN TD!!!!
+            
+            //$result = outputQueryDashboard("employee", $departDropDownPopUp, $jobPosiDropDownPopUp);
+                // might need to change for joins
+            //loadTable($result);
+            
             echo"
                 <div class='dashboard-content-wrapper'>
                     <div class='employee-stat'>
@@ -209,8 +213,8 @@
                         <td id='Age'>21</td>
                         <td id='Sex'>Male</td>
                         <td id='Address'>Ibang planeta</td>
-                        <td id='Department'>Albion Online</td>
-                        <td id='Job Position'>Gatherer - Lumberjack</td>
+                        <td id='Department'>League of Legends</td>
+                        <td id='Job Position'>Top Laner</td>
                         <td id='Contact Number'>00000000000</td>
                         <td id='Email'>chronicallypuyat9to5@gmail.com</td>
                     </tr>
@@ -222,8 +226,8 @@
                         <td id='Age'>21</td>
                         <td id='Sex'>Male</td>
                         <td id='Address'>Ibang planeta</td>
-                        <td id='Department'>Albion Online</td>
-                        <td id='Job Position'>Gatherer - Miner</td>
+                        <td id='Department'>Minecraft</td>
+                        <td id='Job Position'>Builder</td>
                         <td id='Contact Number'>00000000000</td>
                         <td id='Email'>chronicallypuyat9to5@gmail.com</td>
                     </tr>
@@ -244,7 +248,7 @@
             </table>
             </div>
             <div class='table-controls'>
-                <form action=''>
+                <form action='admin-dashboard.php'>
                     <button id='addEmployee' type='button' onclick='addEmployeee()'>Add Employee</button>
                     <button id='editData' type='button' onclick='editDataa()'>Edit Employee</button>
                     <button id='deleteData' type='button' onclick='deleteDataa()'>Delete Employee</button>
@@ -361,8 +365,8 @@
                     </div>
                     <div class='table-controls'>
                         <form action=''>
-                            <button type='button'>Edit Payroll Data</button>
-                            <button type='button'>Print Payroll Data</button>
+                            <button type='button' onclick='editPayrollDataa()'>Edit Payroll Data</button>
+                            <button type='button' onclick='printPayrollDataa()'>Print Payroll Data</button>
                         </form>
                     </div>
                 </div>

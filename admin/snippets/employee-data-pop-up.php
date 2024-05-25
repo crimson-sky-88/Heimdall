@@ -36,7 +36,7 @@
                         <label><input class='popUpInputs' type='radio' name='Sex' id='FemaleInput' value='Female'>Female</label>
                     </div>
                     <div class='input-group-registration-select'>
-                        <select class='popUpInputs' id='departDropDownPopUp' name='Department'>
+                        <select class='popUpInputs' id='departDropDownPopUp' name='Department' onchange='departmentClicked()'>
                             <option value='' disabled selected>Department</option>
                             <option value='Albion Online'>Albion Online</option>
                             <option value='League of Legends'>League of Legends</option>

@@ -1,3 +1,5 @@
+// EMPLOYEES TAB
+
     // UP FOR CHANGE
         var rowClicked = "red";
         var rowUnClicked = "yellow";
@@ -8,7 +10,7 @@
     // POPUP close/open
         let displayValue;
         let popUpOpen = false;
-        let popUpRowData = document.getElementById("pop-up-wrapperr");
+        var popUpRowData = document.getElementById("pop-up-wrapperr");
 
         function closePopUpp(){
             alert("closed popUp");
@@ -35,7 +37,7 @@
             popUpOpen = true;
 
         // array of pop up values
-            var popUpValuesInputText = document.getElementsByClassName("popUpInputs");    
+            let popUpValuesInputText = document.getElementsByClassName("popUpInputs");    
 
         // input values
 
@@ -92,7 +94,7 @@
 
                         let index = selectIndex(jobPosiDropDownPopUp, highlightedRow.children[i].innerText);
 
-                        jobPosiDropDownPopUp.selectIndex = index;
+                        jobPosiDropDownPopUp.selectedIndex = index;
 
                     }
                     popUpValuesCounter--;
@@ -141,16 +143,26 @@
             return -1;
         }
 
+        var x = false;
     // change values of jobPositionDropDown
         function departmentSelectChanged(departValue){
 
+            jobPosiDropDownPopUp.selectedIndex = 0;
+
+            for(let i = 1; i < jobPosiDropDownPopUp.length; i++){                           // remove previous options
+
+                jobPosiDropDownPopUp.remove(i);
+
+            }
+
             var lookup = {
+
                 'Albion Online': ['Gatherer - Lumberjack', 'Gatherer - Harvester', 'Gatherer - Skinner', 'Gatherer - Fisherman', 'Gatherer - Miner', 'Gatherer - Quarrier'],
                 'League of Legends': ['Top Laner', 'Mid Laner', 'Jungler', 'Bot Laner', 'Support'],
-                'Minecraft': ['Gatherer', 'Builder', 'Crafter', 'Adventurer'],
-                };
-        
-            for(let i = 0; i < jobPosiDropDownPopUp.length; i++){                           // remove previous options
+                'Minecraft': ['Gatherer', 'Builder', 'Crafter', 'Adventurer']
+            };
+
+            for(let i = 1; i < jobPosiDropDownPopUp.length; i++){                           // remove previous options
 
                 jobPosiDropDownPopUp.remove(i);
 
@@ -163,8 +175,23 @@
                 option.innerHTML = lookup[departValue][i];
 
                 jobPosiDropDownPopUp.appendChild(option);
+
             }
-        
+
+            if(x){                                              // cheap ahh solution       // select seems to be buggy af
+
+                jobPosiDropDownPopUp.remove(1);
+            
+            }
+            
+            x = true;
+
+        }
+
+        function departmentClicked(){
+
+            departmentSelectChanged(departDropDownPopUp.value);
+
         }
 
     // check if department / jobPosition
@@ -196,27 +223,28 @@
     function clearPopUpsInputs(){
 
         // clear inputs
+        let popUpValuesInputText = document.getElementsByClassName("popUpInputs");    
 
         for(let i = 0; i < popUpValuesInputText.length; i++){
 
-            if(i < 8){
+            if(popUpValuesInputText[i].type == text){
                 popUpValuesInputText[i].value = "";
-            }
-
-            if(jobPosiDropDownPopUp.length > 0){
-                jobPosiDropDownPopUp.remove(i);
             }
             
         }
 
         document.getElementById("MaleInput").checked = false;
         document.getElementById("FemaleInput").checked = false;
-        dropDown.selectedIndex = 1;
 
+        departDropDownPopUp.selectedIndex = 0;
+        departmentSelectChanged('Department');
+        jobPosiDropDownPopUp.selectedIndex = 0;
+        
     }
 
     // Add Employee
     function addEmployi(){
+        let popUpValuesInputText = document.getElementsByClassName("popUpInputs");    
 
         // clear popUp inputs
         clearPopUpsInputs();
@@ -261,14 +289,10 @@
     // ADD EMPLOYEE
     
         function addEmployeee(){
-            
-            if(highlightedRow != ""){
+            //popUpRowData.blur();
 
-                //loadPopUp(highlightedRow, "employee");  
-                // mysql query
-
-            }
-            
+            addEmployi();
+            // mysql query
         }
 
     // EDIT DATA
@@ -288,11 +312,24 @@
 
         function deleteDataa(){
 
-            if(highlightedRow != ""){
+            // mysql query
 
-                // remove row from html table
+            // load table
 
-                // mysql query
+        }
 
-            }
+// EMPLOYEE PAYROLL TAB
+    
+    // EDIT PAYROLL DATA
+        function editPayrollDataa(){
+
+            
+
+        }
+
+    // PRINT PAYROLL DATA
+        function printPayrollDataa(){
+
+
+
         }

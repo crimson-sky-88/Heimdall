@@ -23,7 +23,7 @@
                     <button name="dashboardButton" type="submit">Dashboard</button>
                     <button name="employeesButton" type="submit">Employees</button>
                     <button name="employeePayrollButton" type="submit">Employee Payroll</button>
-                    <button name="logOutButton">Log Out</button>
+                    <button name="logOutButton" type="submit">Log Out</button>
                 </form>
             </div>
         </div>
