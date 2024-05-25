@@ -56,8 +56,12 @@
 
     </div>
 
+    <div id='blockAndBlur' style="width: 100%; height: 100%; position: absolute; left: 0px; top: 0px;
+            background: rgba(0,0,0, 0.3); display: none">
+    </div>
     <?php 
         
+        include_once 'snippets/employee-account-creation-pop-up.php';
         include_once 'snippets/employee-data-pop-up.php';
         include_once 'snippets/payroll-data-pop-up.php';
     

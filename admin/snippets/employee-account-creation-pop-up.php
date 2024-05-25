@@ -1,7 +1,7 @@
 <?php
 
     echo "
-    <div class='account-pop-up-wrapper'>
+    <div class='account-pop-up-wrapper' id='popUpRowDataAccountCreate' style='display: none'>
         <div class='account-form-container'>
             <div class='form-header'>
                 <h3>Account Creation</h3>
@@ -20,8 +20,8 @@
                     <input type='password' placeholder='Repeat Password' required>
                 </div>
                 <div class='pop-up-form-control'>
-                    <button>Confirm</button>
-                    <button>Cancel</button>
+                    <button type='button' onclick='executePopUpAccCreate()'>Confirm</button>
+                    <button type='button' onclick='closePopUpp(0)'>Cancel</button>
                 </div>
             </form>
         </div>

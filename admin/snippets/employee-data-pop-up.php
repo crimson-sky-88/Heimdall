@@ -32,8 +32,8 @@
                         <input class='popUpInputs' name='Email' type='email' placeholder='Email'>
                     </div>
                     <div class='input-group-registration-radio'>
-                        <label><input class='popUpInputs' type='radio' name='Sex' id='MaleInput' value='Male'>Male</label>
-                        <label><input class='popUpInputs' type='radio' name='Sex' id='FemaleInput' value='Female'>Female</label>
+                        <label><input class='y' type='radio' name='Sex' id='MaleInput' value='Male'>Male</label>
+                        <label><input class='' type='radio' name='Sex' id='FemaleInput' value='Female'>Female</label>
                     </div>
                     <div class='input-group-registration-select'>
                         <select class='departDropDownPopUp' name='Department' onchange='departmentClicked()'>
@@ -47,8 +47,8 @@
                         </select>
                     </div>
                     <div class='pop-up-form-control'>
-                        <button id='executePopUp' type='button'>Confirm</button>
-                        <button id='closePopUp' type='button' onclick='closePopUpp()'>Cancel</button>
+                        <button type='button' onclick='executePopUpEmployeeData()'>Confirm</button>
+                        <button type='button' onclick='closePopUpp(1)'>Cancel</button>
                     </div>
                 </form>
             </div>

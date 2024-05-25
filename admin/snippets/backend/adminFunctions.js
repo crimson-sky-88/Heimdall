@@ -1,4 +1,6 @@
 // SELECTION TAB
+    var blockAndBlur = document.getElementById('blockAndBlur');
+
     function changeTab(){
 
         clearPopUpsInputs();
@@ -15,21 +17,21 @@
         var popUpLabelPayoutEdit = "Payroll Data";
     
     // POPUP close/open
-        let displayValue;
-        let popUpOpen = false;
         var popUpRowDataEmployee = document.getElementById("popUpRowDataEmployee");
 
-        function closePopUpp(){
-            alert("closed popUp");
-            if(popUpOpen){
-                displayValue = "none";
-            }else{
-                displayValue = "block";
+        function closePopUpp(passed){
+            
+            let popUpData;                                              // passed parameter from onlick
+            if(passed === 0){
+                popUpData = popUpRowDataAccountCreate;
+            }else if(passed === 1){
+                popUpData = popUpRowDataEmployee;
+            }else if(passed === 2){
+                popUpData = popUpRowDataPayroll;
             }
 
-            popUpRowDataEmployee.style.display = displayValue;
-
-            popUpOpen = !popUpOpen;                                 // returns opposite value
+            popUpData.style.display = "none";
+            blockAndBlur.style.display = "none";
 
         }
 
@@ -41,6 +43,7 @@
 
         function loadPopUp(highlightedRow, popUpRowData, mode){
 
+            blockAndBlur.style.display = "block";
             popUpRowData.style.display = "block";
             popUpOpen = true;
 
@@ -180,7 +183,6 @@
                 }
             }
             
-
             if(x){                                              // cheap ahh solution       // select seems to be buggy af
 
                 jobPosiDropDownPopUp[dropDownID].remove(1);
@@ -248,12 +250,9 @@
     // Add Employee
     function addEmployi(){
         let popUpValuesInputText = document.getElementsByClassName("popUpInputs");    
-
-        // clear popUp inputs
-        clearPopUpsInputs();
         
         // show popUp
-        popUpRowDataEmployee.style.display = "block";
+        popUpRowDataAccountCreate.style.display = "block";
         popUpOpen = true;
 
         // execute / return query string 
@@ -291,11 +290,13 @@
 
     // ADD EMPLOYEE
     
+    var popUpRowDataAccountCreate = document.getElementById("popUpRowDataAccountCreate");
+
         function addEmployeee(){
-            //popUpRowDataEmployee.blur();
+
             dropDownID = 0;
-            loadPopUp(highlightedRoww, popUpRowDataEmployee, "addEmployee");
-            addEmployi();
+            blockAndBlur.style.display = "block";
+            let accCreateQuerry = addEmployi();
             // mysql query
         }
 
@@ -306,6 +307,7 @@
             if(highlightedRoww != ""){
 
                 dropDownID = 0;
+                blockAndBlur.style.display = "block";
                 loadPopUp(highlightedRoww, popUpRowDataEmployee, "editEmployee");
                 // mysql query
                 
@@ -329,10 +331,10 @@
 
     // EDIT PAYROLL DATA
         function editPayrollDataa(){
-
             if(highlightedRoww != ""){
 
                 dropDownID = 1;
+                blockAndBlur.style.display = "block";
                 loadPopUp(highlightedRoww, popUpRowDataPayroll, "editPayroll");
 
             }
@@ -345,3 +347,79 @@
 
 
         }
+
+// MYSQL
+
+    function getPopUpData(popUpData){
+
+        let popUpDataInput = {
+            
+            'Account Creation': {
+                                    'Username': '',
+                                    'Password': '',
+                                },
+            'Employee Registration': {
+                                        'First Name': '',
+                                        'Middle Name': '',
+                                        'Last Name': '',
+                                        'Extension': '',
+                                        'Age': '',
+                                        'Address': '',
+                                        'Contact Number': '',
+                                        'Email': '',
+                                        'Sex': '',
+                                        'Department': '',
+                                        'Job Position': '',
+                                     },
+            'Profile Edit': {
+                                'First Name': '',
+                                'Middle Name': '',
+                                'Last Name': '',
+                                'Extension': '',
+                                'Age': '',
+                                'Address': '',
+                                'Contact Number': '',
+                                'Email': '',
+                                'Sex': '',
+                                'Department': '',
+                                'Job Position': '',
+                            },
+            'Payroll Data': {
+                                'Employee Name': '',
+                                'Wage Per Hour': '',
+                                'Total Hours (Week)': '',
+                                'Gross Pay (Week)': '',
+                                'Total Hours (Month)': '',
+                                'Gross Pay (Month)': '',
+                                'Department': '',
+                                'Job Position': '',
+                                'Mode of Payment': '',
+                                'Employee ID': ''
+                            }
+        };
+
+        return popUpDataInput;
+    }
+
+    function executePopUpAccCreate(){
+
+        closePopUpp(popUpRowDataAccountCreate);
+        loadPopUp(highlightedRoww, popUpRowDataEmployee, "addEmployee");
+        blockAndBlur.style.display = "none";
+        
+        // clear popUp inputs
+        clearPopUpsInputs();
+    }
+
+    function executePopUpEmployeeData(){
+
+        closePopUpp(popUpRowDataEmployee);
+        blockAndBlur.style.display = "none";
+    }
+
+    function executePopUpPayroll(){
+
+
+        closePopUpp(popUpRowDataPayroll);
+        blockAndBlur.style.display = "none";
+    }

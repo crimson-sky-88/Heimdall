@@ -1,7 +1,7 @@
 <?php
 
     echo"
-    <div class='pop-up-wrapper' id='popUpRowDataPayroll' style='display: block'>
+    <div class='pop-up-wrapper' id='popUpRowDataPayroll' style='display: none'>
         <div class='form-container'>
             <div class='form-header'>
                 <h3>Payroll Data</h3>
@@ -47,8 +47,8 @@
                     </div>
                 </div>
                 <div class='pop-up-form-control'>
-                    <button>Confirm</button>
-                    <button>Cancel</button>
+                    <button type='button' onclick='executePopUpPayroll()'>Confirm</button>
+                    <button type='button' onclick='closePopUpp(2)'>Cancel</button>
                 </div>
             </form>
         </div>

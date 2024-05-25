@@ -14,140 +14,85 @@
             //loadTable($result);
             
             echo"
-                <div class='dashboard-content-wrapper'>
-                    <div class='employee-stat'>
-                        <div class='stat-container'>
-                            <p>Total Employees</p>
-                            <h4>999</h4>
-                        </div>
-                        <div class='stat-container'>
-                            <p>Employees Present</p>
-                            <h4>5</h4>
-                        </div>
-                        <div class='stat-container'>
-                            <p>Date</p>
-                            <h4>01 January 1943 </h4>
-                        </div>
+            <div class='dashboard-content-wrapper'>
+            <div class='employee-stat'>
+                <div class='stat-container'>
+                    <p>Total Employees</p>
+                    <h4>999</h4>
+                </div>
+                <div class='stat-container'>
+                    <p>Employees Present</p>
+                    <h4>5</h4>
+                </div>
+                <div class='stat-container'>
+                    <p>Date</p>
+                    <h4>01 January 1943 </h4>
+                </div>
+            </div>
+            <div class='attendance-table'>
+                <div class='employee-table-wrapper'>
+                    <div class='table-header'>
+                        <h3>Attendance List</h3>
+                        <form action=''>
+                            <select id='Departments'>
+                                <option value='' disabled selected>Department</option>
+                                <option value='albion-online'>Albion Online</option>
+                                <option value='league-of-legends'>League of Legends</option>
+                                <option value='minecraft'>Minecraft</option>
+                            </select>
+                            <select  id='positions'>
+                                <option value='' disabled selected>Job Position</option>
+                            </select>
+                        </form>
                     </div>
-
-                    <form action='admin-dashboard.php' method='post'>
-                        <select class='departDropDownFilter'>
-                            <option value='Department'> Department </option>
-                            <option value='Lumberjack'> Lumberjack </option>
-                            <option value='Miner'> Miner </option>
-                            <option value='Skinner'> Skinner </option>
-                            <option value='Harverster'> Harverster </option>
-                        </select>
-                        <select class='jobPosiDropDownFilter'>
-                            <option value='Job Position'> Job Position </option>
-                            <option value='Top Laner'> Top Laner </option>
-                            <option value='Jungler'> Jungler </option>
-                            <option value='Mid'> Mid </option>
-                            <option value='Bottom'> Bottom </option>
-                            <option value='Support'> Support </option>
-                        </select>
-                    </form>
-                    
-                    <div class='attendance-table'>
-                        <div class='employee-table-wrapper'>
-                            <div class='table-header'>
-                                <h3>Attendance List</h3>
-                            </div>
-                            <div class='attendance-table-container'>
-                
-            <table>
-            <thead id='tableHead' class='table-head'>
-                <tr>
-                    <th>First Name</th>
-                    <th>Middle Name</th>
-                    <th>Last Name</th>
-                    <th>Extension</th>
-                    <th>Age</th>
-                    <th>Sex</th>
-                    <th>Address</th>
-                    <th>Department</th>
-                    <th>Job Position</th>
-                    <th>Contact Number</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <tbody id='tableBody'>  
-                <tr onclick='highlightSelectedRow(this)'>
-                    <td id='First Name'>Jefferson</td>
-                    <td id='Middle Name'>Manglicmot</td>
-                    <td id='Last Name'>Franco</td>
-                    <td id='Extension'>N/A</td>
-                    <td id='Age'>21</td>
-                    <td id='Sex'>Male</td>
-                    <td id='Address'>Purok 3, Brgy. West Dirita, San Antonio, Zambales</td>
-                    <td id='Department'>Albion Online</td>
-                    <td id='Job Position'>Gatherer - Lumberjack</td>
-                    <td id='Contact Number'>00000000000</td>
-                    <td id='Email'>chronicallypuyat9to5@gmail.com</td>
-                </tr>
-                <tr onclick='highlightSelectedRow(this)'>
-                    <td id='First Name'>Justin Chris</td>
-                    <td id='Middle Name'>Apostol</td>
-                    <td id='Last Name'>De Leon</td>
-                    <td id='Extension'>N/A</td>
-                    <td id='Age'>21</td>
-                    <td id='Sex'>Male</td>
-                    <td id='Address'>Ibang planeta</td>
-                    <td id='Department'>Albion Online</td>
-                    <td id='Job Position'>Gatherer - Skinner</td>
-                    <td id='Contact Number'>00000000000</td>
-                    <td id='Email'>chronicallypuyat9to5@gmail.com</td>
-                </tr>
-                <tr onclick='highlightSelectedRow(this)'>
-                    <td id='First Name'>Marvine Ray</td>
-                    <td id='Middle Name'>Abarra</td>
-                    <td id='Last Name'>Fernandez</td>
-                    <td id='Extension'>N/A</td>
-                    <td id='Age'>21</td>
-                    <td id='Sex'>Male</td>
-                    <td id='Address'>Ibang planeta</td>
-                    <td id='Department'>Albion Online</td>
-                    <td id='Job Position'>Gatherer - Lumberjack</td>
-                    <td id='Contact Number'>00000000000</td>
-                    <td id='Email'>chronicallypuyat9to5@gmail.com</td>
-                </tr>
-                <tr onclick='highlightSelectedRow(this)'>
-                    <td id='First Name'>Alhine Stephen</td>
-                    <td id='Middle Name'>Presto</td>
-                    <td id='Last Name'>Baliton</td>
-                    <td id='Extension'>N/A</td>
-                    <td id='Age'>21</td>
-                    <td id='Sex'>Male</td>
-                    <td id='Address'>Ibang planeta</td>
-                    <td id='Department'>Albion Online</td>
-                    <td id='Job Position'>Gatherer - Miner</td>
-                    <td id='Contact Number'>00000000000</td>
-                    <td id='Email'>chronicallypuyat9to5@gmail.com</td>
-                </tr>
-                <tr onclick='highlightSelectedRow(this)'>
-                    <td id='First Name'>Kyle Daniel</td>
-                    <td id='Middle Name'>Gatpandan</td>
-                    <td id='Last Name'>Javines</td>
-                    <td id='Extension'>N/A</td>
-                    <td id='Age'>21</td>
-                    <td id='Sex'>Male</td>
-                    <td id='Address'>Ibang planeta</td>
-                    <td id='Department'>Albion Online</td>
-                    <td id='Job Position'>Gatherer - Miner</td>
-                    <td id='Contact Number'>00000000000</td>
-                    <td id='Email'>chronicallypuyat9to5@gmail.com</td>
-            </tr>
-            </tbody>
-        </table>
-
-            
-
-            
-            
-                            </div>
-                        </div>
+                    <div class='attendance-table-container'>
+                        <table>
+                            <thead class='table-head'>
+                                <tr>
+                                    <td>Employee ID</td>
+                                    <td>Employee Name</td>
+                                    <td>Department</td>
+                                    <td>Job Position</td>
+                                    <td>Clock-in Time</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Jefferson Manglicmot Franco</td>
+                                    <td>Albion Online</td>
+                                    <td>Gatherer - Lumberjack</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Justin Chris Apostol De Leon</td>
+                                    <td>Albion Online</td>
+                                    <td>Gatherer - Skinner</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Marvine Ray Abarra Fernandez</td>
+                                    <td>Albion Online</td>
+                                    <td>Gatherer - Lumberjack</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Alhine Stephen Presto Baliton</td>
+                                    <td>Albion Online</td>
+                                    <td>Gatherer - Miner</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Kyle Daniel Gatpandan Javines</td>
+                                    <td>Albion Online</td>
+                                    <td>Gatherer - Miner</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
+            </div>
+        </div>
             ";
 
         }
