@@ -1,7 +1,7 @@
 <?php
 
     echo"
-        <div class='pop-up-wrapper' id='pop-up-wrapperr' style='display: none'>
+        <div class='pop-up-wrapper' id='popUpRowDataEmployee' style='display: none'>
             <div class='form-container'>
                 <div class='form-header'>
                     <h3>Employee Registration</h3>
@@ -36,13 +36,13 @@
                         <label><input class='popUpInputs' type='radio' name='Sex' id='FemaleInput' value='Female'>Female</label>
                     </div>
                     <div class='input-group-registration-select'>
-                        <select class='popUpInputs' id='departDropDownPopUp' name='Department' onchange='departmentClicked()'>
+                        <select class='departDropDownPopUp' name='Department' onchange='departmentClicked()'>
                             <option value='' disabled selected>Department</option>
                             <option value='Albion Online'>Albion Online</option>
                             <option value='League of Legends'>League of Legends</option>
                             <option value='Minecraft'>Minecraft</option>
                         </select>
-                        <select class='popUpInputs' id='jobPosiDropDownPopUp' name='Job Position'>
+                        <select class='jobPosiDropDownPopUp' name='Job Position'>
                             <option value='' disabled selected>Job Position</option>
                         </select>
                     </div>

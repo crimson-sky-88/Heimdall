@@ -31,16 +31,16 @@
                     </div>
 
                     <form action='admin-dashboard.php' method='post'>
-                        <select id='departDropDownPopUp'>
+                        <select class='departDropDownFilter'>
                             <option value='Department'> Department </option>
                             <option value='Lumberjack'> Lumberjack </option>
                             <option value='Miner'> Miner </option>
                             <option value='Skinner'> Skinner </option>
                             <option value='Harverster'> Harverster </option>
                         </select>
-                        <select id='jobPosiDropDownPopUp'>
+                        <select class='jobPosiDropDownFilter'>
                             <option value='Job Position'> Job Position </option>
-                            <option value='Top'> Top </option>
+                            <option value='Top Laner'> Top Laner </option>
                             <option value='Jungler'> Jungler </option>
                             <option value='Mid'> Mid </option>
                             <option value='Bottom'> Bottom </option>
@@ -153,7 +153,7 @@
         }
     
         if(isset($_POST["employeesButton"])){
-    
+
             ob_end_clean();
     
             echo"
@@ -270,16 +270,16 @@
                     </div>
 
                     <form action='admin-dashboard.php' method='post'>
-                        <select id='departDropDownPopUp'>
+                        <select class='departDropDownFilter'>
                             <option value='Department'> Department </option>
                             <option value='Lumberjack'> Lumberjack </option>
                             <option value='Miner'> Miner </option>
                             <option value='Skinner'> Skinner </option>
                             <option value='Harverster'> Harverster </option>
                         </select>
-                        <select id='jobPosiDropDownPopUp'>
+                        <select class='jobPosiDropDownFilter'>
                             <option value='Job Position'> Job Position </option>
-                            <option value='Top'> Top </option>
+                            <option value='Top Laner'> Top Laner</option>
                             <option value='Jungler'> Jungler </option>
                             <option value='Mid'> Mid </option>
                             <option value='Bottom'> Bottom </option>
@@ -305,59 +305,59 @@
                     </thead>
                     <tbody id='tableBody'>
                         <tr onclick='highlightSelectedRow(this)'>
-                            <td>1</td>
-                            <td>Jefferson Manglicmot Franco</td>
-                            <td>League of Legends</td>
-                            <td>Top</td>
-                            <td>$5</td>
-                            <td>72</td>
-                            <td>$360</td>
-                            <td>288</td>
-                            <td>$1440</td>
+                            <td id='Employee ID'>1</td>
+                            <td id='Employee Name'>Jefferson Manglicmot Franco</td>
+                            <td id='Department'>League of Legends</td>
+                            <td id='Job Position'>Top Laner</td>
+                            <td id='Wage Per Hour'>$5</td>
+                            <td id='Total Hours (Week)'>72</td>
+                            <td id='Gross Pay (Week)'>$360</td>
+                            <td id='Total Hours (Month)'>288</td>
+                            <td id='Gross Pay (Month)'>$1440</td>
                         </tr>
                         <tr onclick='highlightSelectedRow(this)'>
-                            <td>2</td>
-                            <td>Justin Chris Apostol De Leon</td>
-                            <td>Albion Online</td>
-                            <td>Gatherer - Skinner</td>
-                            <td>$5</td>
-                            <td>72</td>
-                            <td>$360</td>
-                            <td>288</td>
-                            <td>$1440</td>
+                            <td id='Employee ID'>2</td>
+                            <td id='Employee Name'>Justin Chris Apostol De Leon</td>
+                            <td id='Department'>Albion Online</td>
+                            <td id='Job Position'>Gatherer - Skinner</td>
+                            <td id='Wage Per Hour'>$5</td>
+                            <td id='Total Hours (Week)'>72</td>
+                            <td id='Gross Pay (Week)'>$360</td>
+                            <td id='Total Hours (Month)'>288</td>
+                            <td id='Gross Pay (Month)'>$1440</td>
                         </tr>
                         <tr onclick='highlightSelectedRow(this)'>
-                            <td>3</td>
-                            <td>Marvine Ray Abarra Fernandez</td>
-                            <td>Albion Online</td>
-                            <td>Gatherer - Lumberjack</td>
-                            <td>$5</td>
-                            <td>72</td>
-                            <td>$360</td>
-                            <td>288</td>
-                            <td>$1440</td>
+                            <td id='Employee ID'>3</td>
+                            <td id='Employee Name'>Marvine Ray Abarra Fernandez</td>
+                            <td id='Department'>Albion Online</td>
+                            <td id='Job Position'>Gatherer - Lumberjack</td>
+                            <td id='Wage Per Hour'>$5</td>
+                            <td id='Total Hours (Week)'>72</td>
+                            <td id='Gross Pay (Week)'>$360</td>
+                            <td id='Total Hours (Month)'>288</td>
+                            <td id='Gross Pay (Month)'>$1440</td>
                         </tr>
                         <tr onclick='highlightSelectedRow(this)'>
-                            <td>4</td>
-                            <td>Alhine Stephen Presto Baliton</td>
-                            <td>Minecraft</td>
-                            <td>Builder</td>
-                            <td>$5</td>
-                            <td>72</td>
-                            <td>$360</td>
-                            <td>288</td>
-                            <td>$1440</td>
+                            <td id='Employee ID'>4</td>
+                            <td id='Employee Name'>Alhine Stephen Presto Baliton</td>
+                            <td id='Department'>Minecraft</td>
+                            <td id='Job Position'>Builder</td>
+                            <td id='Wage Per Hour'>$5</td>
+                            <td id='Total Hours (Week)'>72</td>
+                            <td id='Gross Pay (Week)'>$360</td>
+                            <td id='Total Hours (Month)'>288</td>
+                            <td id='Gross Pay (Month)'>$1440</td>
                         </tr>
                         <tr onclick='highlightSelectedRow(this)'>
-                            <td>5</td>
-                            <td>Kyle Daniel Gatpandan Javines</td>
-                            <td>Minecraft</td>
-                            <td>Gatherer</td>
-                            <td>$5</td>
-                            <td>72</td>
-                            <td>$360</td>
-                            <td>288</td>
-                            <td>$1440</td>
+                            <td id='Employee ID'>5</td>
+                            <td id='Employee Name'>Kyle Daniel Gatpandan Javines</td>
+                            <td id='Department'>Minecraft</td>
+                            <td id='Job Position'>Gatherer</td>
+                            <td id='Wage Per Hour'>$5</td>
+                            <td id='Total Hours (Week)'>72</td>
+                            <td id='Gross Pay (Week)'>$360</td>
+                            <td id='Total Hours (Month)'>288</td>
+                            <td id='Gross Pay (Month)'>$1440</td>
                         </tr>
                     </tbody>
                 </table>

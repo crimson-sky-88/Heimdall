@@ -1,3 +1,10 @@
+// SELECTION TAB
+    function changeTab(){
+
+        clearPopUpsInputs();
+
+    };
+
 // EMPLOYEES TAB
 
     // UP FOR CHANGE
@@ -5,12 +12,12 @@
         var rowUnClicked = "yellow";
         var popUpLabelAddEmployee = "Add Employee";
         var popUpLabelProfileEdit = "Profile Edit";
-        var popUpLabelProfileDelete = "Profile Delete";
+        var popUpLabelPayoutEdit = "Payroll Data";
     
     // POPUP close/open
         let displayValue;
         let popUpOpen = false;
-        var popUpRowData = document.getElementById("pop-up-wrapperr");
+        var popUpRowDataEmployee = document.getElementById("popUpRowDataEmployee");
 
         function closePopUpp(){
             alert("closed popUp");
@@ -20,7 +27,7 @@
                 displayValue = "block";
             }
 
-            popUpRowData.style.display = displayValue;
+            popUpRowDataEmployee.style.display = displayValue;
 
             popUpOpen = !popUpOpen;                                 // returns opposite value
 
@@ -28,21 +35,23 @@
 
     // LOAD POP UP DATA
 
-        var departDropDownPopUp = document.getElementById("departDropDownPopUp");
-        var jobPosiDropDownPopUp = document.getElementById("jobPosiDropDownPopUp");
+        var departDropDownPopUp = document.getElementsByClassName("departDropDownPopUp");
+        var jobPosiDropDownPopUp = document.getElementsByClassName("jobPosiDropDownPopUp");
+        var dropDownID;
 
-        function loadPopUp(highlightedRow, mode){
+        function loadPopUp(highlightedRow, popUpRowData, mode){
 
             popUpRowData.style.display = "block";
             popUpOpen = true;
 
         // array of pop up values
-            let popUpValuesInputText = document.getElementsByClassName("popUpInputs");    
+            let popUpValuesInputText = popUpRowData.getElementsByClassName("popUpInputs");    
 
-        // input values
+            // input values
 
             var popUpValuesCounter = -1;
             for(let i = 0; i < highlightedRow.children.length; i++){
+
                 popUpValuesCounter++;
 
                 if(!isDepartOrJobPos(highlightedRow.children[i].innerText)){                                                                    // checks if for inputText
@@ -52,14 +61,14 @@
                     if(highlightedRow.children[i].id != "Sex"){
 
                         for(let k = 0; k < highlightedRow.children.length; k++){            // dynamic search to search for all value fit
-
+                           
                             if(popUpValuesInputText[popUpValuesCounter].name == highlightedRow.children[k].id){
+                                console.log(popUpValuesInputText[popUpValuesCounter].name);
 
                                 popUpValuesInputText[popUpValuesCounter].value = highlightedRow.children[k].innerText;
 
                             }    
                         }
-                               
                         
                     }else{
                     // radio inputs
@@ -82,19 +91,19 @@
 
                 }else{  
 
-                    if(departDropDownPopUp.name == highlightedRow.children[i].id){
+                    if(departDropDownPopUp[dropDownID].name == highlightedRow.children[i].id){
 
-                        let index = selectIndex(departDropDownPopUp, highlightedRow.children[i].innerText);
-                        departmentSelectChanged(departDropDownPopUp.value);
+                        let index = selectIndex(departDropDownPopUp[dropDownID], highlightedRow.children[i].innerText);
+                        departmentSelectChanged(departDropDownPopUp[dropDownID].value);
 
-                        departDropDownPopUp.selectedIndex = index;
+                        departDropDownPopUp[dropDownID].selectedIndex = index;
 
                     }
-                    if(jobPosiDropDownPopUp.name == highlightedRow.children[i].id){
+                    if(jobPosiDropDownPopUp[dropDownID].name == highlightedRow.children[i].id){
 
-                        let index = selectIndex(jobPosiDropDownPopUp, highlightedRow.children[i].innerText);
+                        let index = selectIndex(jobPosiDropDownPopUp[dropDownID], highlightedRow.children[i].innerText);
 
-                        jobPosiDropDownPopUp.selectedIndex = index;
+                        jobPosiDropDownPopUp[dropDownID].selectedIndex = index;
 
                     }
                     popUpValuesCounter--;
@@ -103,26 +112,17 @@
             }
 
         // button visiblity
-            if(mode === "employee"){
+            if(mode === "addEmployee"){
 
                 popUpRowData.children[0].children[0].children[0].innerText = popUpLabelAddEmployee;                                               // change title of Pop Up
-                
-                jobPosiDropDownPopUp.readOnly = false;
-                departDropDownPopUp.readOnly = false;
 
-            }else if(mode === "edit"){
+            }else if(mode === "editEmployee"){
 
                 popUpRowData.children[0].children[0].children[0].innerText = popUpLabelProfileEdit;
 
-                jobPosiDropDownPopUp.readOnly = false;
-                departDropDownPopUp.readOnly = false;
+            }else if(mode === "editPayroll"){
 
-            }else if(mode === "delete"){
-
-                popUpRowData.children[0].children[0].children[0].innerText = popUpLabelProfileDelete;
-
-                jobPosiDropDownPopUp.readOnly = true;
-                departDropDownPopUp.readOnly = true;
+                popUpRowData.children[0].children[0].children[0].innerText = popUpLabelPayoutEdit;
 
             } 
 
@@ -147,11 +147,11 @@
     // change values of jobPositionDropDown
         function departmentSelectChanged(departValue){
 
-            jobPosiDropDownPopUp.selectedIndex = 0;
+            jobPosiDropDownPopUp[dropDownID].selectedIndex = 0;
 
-            for(let i = 1; i < jobPosiDropDownPopUp.length; i++){                           // remove previous options
+            for(let i = 1; i < jobPosiDropDownPopUp[dropDownID].length; i++){                           // remove previous options
 
-                jobPosiDropDownPopUp.remove(i);
+                jobPosiDropDownPopUp[dropDownID].remove(i);
 
             }
 
@@ -162,25 +162,28 @@
                 'Minecraft': ['Gatherer', 'Builder', 'Crafter', 'Adventurer']
             };
 
-            for(let i = 1; i < jobPosiDropDownPopUp.length; i++){                           // remove previous options
+            for(let i = 1; i < jobPosiDropDownPopUp[dropDownID].length; i++){                           // remove previous options
 
-                jobPosiDropDownPopUp.remove(i);
+                jobPosiDropDownPopUp[dropDownID].remove(i);
 
             }
 
-            for(let i = 0; i < lookup[departValue].length; i++){
+            if(departValue != "Department"){
+                for(let i = 0; i < lookup[departValue].length; i++){
                 
-                var option = document.createElement('option');
-                option.value = lookup[departValue][i];
-                option.innerHTML = lookup[departValue][i];
+                    var option = document.createElement('option');
+                    option.value = lookup[departValue][i];
+                    option.innerHTML = lookup[departValue][i];
 
-                jobPosiDropDownPopUp.appendChild(option);
+                    jobPosiDropDownPopUp[dropDownID].appendChild(option);
 
+                }
             }
+            
 
             if(x){                                              // cheap ahh solution       // select seems to be buggy af
 
-                jobPosiDropDownPopUp.remove(1);
+                jobPosiDropDownPopUp[dropDownID].remove(1);
             
             }
             
@@ -190,25 +193,25 @@
 
         function departmentClicked(){
 
-            departmentSelectChanged(departDropDownPopUp.value);
+            departmentSelectChanged(departDropDownPopUp[dropDownID].value);
 
         }
 
     // check if department / jobPosition
         function isDepartOrJobPos(x){
 
-            for(let i = 1; i < departDropDownPopUp.length; i++){                          // start at 1 for 0 is default value
-
-                if (departDropDownPopUp.children[i].value == x){
+            for(let i = 1; i < departDropDownPopUp[dropDownID].length; i++){                          // start at 1 for 0 is default value
+                if (departDropDownPopUp[dropDownID].children[i].value == x){
 
                     return true;
+
                 }
 
             }
             
-            for(let i = 1; i < jobPosiDropDownPopUp.length; i++){
+            for(let i = 1; i < jobPosiDropDownPopUp[dropDownID].length; i++){
 
-                if(jobPosiDropDownPopUp.children[i].value == x){
+                if(jobPosiDropDownPopUp[dropDownID].children[i].value == x){
 
                     return true;
 
@@ -227,7 +230,7 @@
 
         for(let i = 0; i < popUpValuesInputText.length; i++){
 
-            if(popUpValuesInputText[i].type == text){
+            if(popUpValuesInputText[i].type == "text" || popUpValuesInputText[i].type == "email"){
                 popUpValuesInputText[i].value = "";
             }
             
@@ -236,9 +239,9 @@
         document.getElementById("MaleInput").checked = false;
         document.getElementById("FemaleInput").checked = false;
 
-        departDropDownPopUp.selectedIndex = 0;
+        departDropDownPopUp[dropDownID].selectedIndex = 0;
         departmentSelectChanged('Department');
-        jobPosiDropDownPopUp.selectedIndex = 0;
+        jobPosiDropDownPopUp[dropDownID].selectedIndex = 0;
         
     }
 
@@ -250,7 +253,7 @@
         clearPopUpsInputs();
         
         // show popUp
-        popUpRowData.style.display = "block";
+        popUpRowDataEmployee.style.display = "block";
         popUpOpen = true;
 
         // execute / return query string 
@@ -267,20 +270,20 @@
     }
 
     // HIGHLIGHT SELECTED ROW
-        var highlightedRow = "", oldHighlightedRow;
+        var highlightedRoww = "", oldHighlightedRow;
         var oneTimeSwitch = false;
         
         function highlightSelectedRow(x) {
 
             if(oneTimeSwitch){                                  // dont run this at first execute
 
-                oldHighlightedRow = highlightedRow;
+                oldHighlightedRow = highlightedRoww;
                 oldHighlightedRow.style.backgroundColor = rowUnClicked;
 
             }
         
-            highlightedRow = x;                    // get parent/row of selected cell
-            highlightedRow.style.backgroundColor = rowClicked;
+            highlightedRoww = x;                    // get parent/row of selected cell
+            highlightedRoww.style.backgroundColor = rowClicked;
 
             oneTimeSwitch = true;
             
@@ -289,8 +292,9 @@
     // ADD EMPLOYEE
     
         function addEmployeee(){
-            //popUpRowData.blur();
-
+            //popUpRowDataEmployee.blur();
+            dropDownID = 0;
+            loadPopUp(highlightedRoww, popUpRowDataEmployee, "addEmployee");
             addEmployi();
             // mysql query
         }
@@ -299,11 +303,12 @@
 
         function editDataa(){
 
-            if(highlightedRow != ""){
+            if(highlightedRoww != ""){
 
-                loadPopUp(highlightedRow, "edit");
+                dropDownID = 0;
+                loadPopUp(highlightedRoww, popUpRowDataEmployee, "editEmployee");
                 // mysql query
-
+                
             }
             
         }
@@ -320,11 +325,18 @@
 
 // EMPLOYEE PAYROLL TAB
     
+    var popUpRowDataPayroll = document.getElementById("popUpRowDataPayroll");
+
     // EDIT PAYROLL DATA
         function editPayrollDataa(){
 
-            
+            if(highlightedRoww != ""){
 
+                dropDownID = 1;
+                loadPopUp(highlightedRoww, popUpRowDataPayroll, "editPayroll");
+
+            }
+    
         }
 
     // PRINT PAYROLL DATA

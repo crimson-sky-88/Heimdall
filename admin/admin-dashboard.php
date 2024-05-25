@@ -21,8 +21,8 @@
                 <h3>Navigation</h3>
                 <form action="admin-dashboard.php" method="post" class="">
                     <button name="dashboardButton" type="submit">Dashboard</button>
-                    <button name="employeesButton" type="submit">Employees</button>
-                    <button name="employeePayrollButton" type="submit">Employee Payroll</button>
+                    <button name="employeesButton" type="submit" onclick="changeTab()">Employees</button>
+                    <button name="employeePayrollButton" type="submit" onclick="changeTab()">Employee Payroll</button>
                     <button name="logOutButton" type="submit">Log Out</button>
                 </form>
             </div>
@@ -59,6 +59,7 @@
     <?php 
         
         include_once 'snippets/employee-data-pop-up.php';
+        include_once 'snippets/payroll-data-pop-up.php';
     
     ?>
 
