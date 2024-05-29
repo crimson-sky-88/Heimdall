@@ -1,12 +1,6 @@
 // SELECTION TAB
     var blockAndBlur = document.getElementById('blockAndBlur');
 
-    function changeTab(){
-
-        clearPopUpsInputs();
-
-    };
-
 // EMPLOYEES TAB
 
     // UP FOR CHANGE
@@ -21,17 +15,21 @@
 
         function closePopUpp(passed){
             
+            resetObjectPlaceholder();
+
             let popUpData;                                              // passed parameter from onlick
             if(passed === 0){
                 popUpData = popUpRowDataAccountCreate;
             }else if(passed === 1){
                 popUpData = popUpRowDataEmployee;
-            }else if(passed === 2){
+                }else if(passed === 2){
                 popUpData = popUpRowDataPayroll;
             }
-
-            popUpData.style.display = "none";
+            
             blockAndBlur.style.display = "none";
+            popUpData.style.display = "none";
+
+            
 
         }
 
@@ -52,37 +50,38 @@
 
             // input values
 
+            if(highlightedRow != ""){
+
+            // only take the vialble fields in highlighted row
+
+
             var popUpValuesCounter = -1;
-            for(let i = 0; i < highlightedRow.children.length; i++){
-
+            for(let i = 0; i < highlightedRow.children.length; i++){                                                // i = 1 because we dont want id to show
                 popUpValuesCounter++;
-
                 if(!isDepartOrJobPos(highlightedRow.children[i].innerText)){                                                                    // checks if for inputText
                 // put clicked row data to pop up
-                        // text inputs
-                
-                    if(highlightedRow.children[i].id != "Sex"){
-
+                // text inputs
+                    if(highlightedRow.children[i].id != "emp_sex"){
+                    
                         for(let k = 0; k < highlightedRow.children.length; k++){            // dynamic search to search for all value fit
-                           
+
                             if(popUpValuesInputText[popUpValuesCounter].name == highlightedRow.children[k].id){
-                                console.log(popUpValuesInputText[popUpValuesCounter].name);
 
                                 popUpValuesInputText[popUpValuesCounter].value = highlightedRow.children[k].innerText;
-
+                                break;
                             }    
                         }
                         
                     }else{
                     // radio inputs
                         // only one must be active
-
-                        if(highlightedRow.children[i].innerText == "Male"){
+                        
+                        if(highlightedRow.children[i].innerText == "M"){
 
                             document.getElementById("MaleInput").checked = true;
                             document.getElementById("FemaleInput").checked = false;
                             
-                        }else if(highlightedRow.children[i].innerText == "Female"){
+                        }else if(highlightedRow.children[i].innerText == "F"){
 
                             document.getElementById("MaleInput").checked = false;
                             document.getElementById("FemaleInput").checked = true;
@@ -93,7 +92,7 @@
                     }
 
                 }else{  
-
+                    
                     if(departDropDownPopUp[dropDownID].name == highlightedRow.children[i].id){
 
                         let index = selectIndex(departDropDownPopUp[dropDownID], highlightedRow.children[i].innerText);
@@ -114,7 +113,8 @@
 
             }
 
-        // button visiblity
+            }
+        // change label
             if(mode === "addEmployee"){
 
                 popUpRowData.children[0].children[0].children[0].innerText = popUpLabelAddEmployee;                                               // change title of Pop Up
@@ -171,7 +171,7 @@
 
             }
 
-            if(departValue != "Department"){
+            if(departValue != "job_department"){
                 for(let i = 0; i < lookup[departValue].length; i++){
                 
                     var option = document.createElement('option');
@@ -196,6 +196,13 @@
         function departmentClicked(){
 
             departmentSelectChanged(departDropDownPopUp[dropDownID].value);
+
+        }
+
+        function departmentClik(){
+
+            // mysql query
+            departmentSelect(departDropDownFilter[0].value);
 
         }
 
@@ -242,7 +249,7 @@
         document.getElementById("FemaleInput").checked = false;
 
         departDropDownPopUp[dropDownID].selectedIndex = 0;
-        departmentSelectChanged('Department');
+        departmentSelectChanged('job_department');
         jobPosiDropDownPopUp[dropDownID].selectedIndex = 0;
         
     }
@@ -273,7 +280,7 @@
         var oneTimeSwitch = false;
         
         function highlightSelectedRow(x) {
-
+            
             if(oneTimeSwitch){                                  // dont run this at first execute
 
                 oldHighlightedRow = highlightedRoww;
@@ -322,11 +329,63 @@
             // mysql query
 
             // load table
+            
 
         }
 
 // EMPLOYEE PAYROLL TAB
     
+    var departDropDownFilter = document.getElementsByClassName('departDropDownFilter');             // 3 elements
+    var jobPosiDropDownFilter = document.getElementsByClassName('jobPosiDropDownFilter');
+    //var dropDownIDD;
+
+function departmentSelect(departValue){
+
+    let dropDownIDDd = 0;
+
+    jobPosiDropDownFilter[dropDownIDDd].selectedIndex = 0;
+
+    for(let i = 1; i < jobPosiDropDownFilter[dropDownIDDd].length; i++){                           // remove previous options
+
+        jobPosiDropDownFilter[dropDownIDDd].remove(i);
+
+    }
+
+    let lookupp = {
+
+        'Albion Online': ['Gatherer - Lumberjack', 'Gatherer - Harvester', 'Gatherer - Skinner', 'Gatherer - Fisherman', 'Gatherer - Miner', 'Gatherer - Quarrier'],
+        'League of Legends': ['Top Laner', 'Mid Laner', 'Jungler', 'Bot Laner', 'Support'],
+        'Minecraft': ['Gatherer', 'Builder', 'Crafter', 'Adventurer']
+    };
+
+    for(let i = 1; i < jobPosiDropDownFilter[dropDownIDDd].length; i++){                           // remove previous options
+
+        jobPosiDropDownFilter[dropDownIDDd].remove(i);
+
+    }
+
+    if(departValue != "job_department"){
+        for(let i = 0; i < lookupp[departValue].length; i++){
+        
+            var option = document.createElement('option');
+            option.value = lookupp[departValue][i];
+            option.innerHTML = lookupp[departValue][i];
+
+            jobPosiDropDownFilter[dropDownIDDd].appendChild(option);
+
+        }
+    }
+    
+    if(x){                                              // cheap ahh solution       // select seems to be buggy af
+
+        jobPosiDropDownFilter[dropDownIDDd].remove(1);
+    
+    }
+    
+    x = true;
+
+}
+
     var popUpRowDataPayroll = document.getElementById("popUpRowDataPayroll");
 
     // EDIT PAYROLL DATA
@@ -344,7 +403,7 @@
     // PRINT PAYROLL DATA
         function printPayrollDataa(){
 
-
+            window.print();
 
         }
 
@@ -352,74 +411,122 @@
 
     function getPopUpData(popUpData){
 
+        //let popUpValuesInputText = document.getElementsByClassName("popUpInputs");  
+        popUpRowDataPayroll
+        let popUpId;
+        
+        // popUpData id parser                                                          // im in too deep, im not changing sht
+        if(popUpData.id === popUpRowDataAccountCreate.id){
+            popUpId = 'Account Creation';
+        }else if(popUpData.id === popUpRowDataEmployee.id){
+            popUpId = 'Employee Registration';
+        }else if(popUpData.id === popUpRowDataPayroll.id){
+            popUpId = 'Payroll Data';
+        }
+
+        let parseInputClass = popUpData.getElementsByClassName('popUpInputs');
+
         let popUpDataInput = {
             
             'Account Creation': {
-                                    'Username': '',
-                                    'Password': '',
+                                    'emp_username': '',
+                                    'emp_password': '',
                                 },
-            'Employee Registration': {
-                                        'First Name': '',
-                                        'Middle Name': '',
-                                        'Last Name': '',
-                                        'Extension': '',
-                                        'Age': '',
-                                        'Address': '',
-                                        'Contact Number': '',
-                                        'Email': '',
-                                        'Sex': '',
-                                        'Department': '',
-                                        'Job Position': '',
+            'Employee Registration': {                                              // can be Profile Edit
+                                        'emp_firstname': '',
+                                        'emp_middlename': '',
+                                        'emp_lastname': '',
+                                        'emp_extension': '',
+                                        'emp_age': '',
+                                        'emp_address': '',
+                                        'emp_contactNumber': '',
+                                        'emp_email': '',
+                                        'emp_sex': '',
+                                        'job_department': '',
+                                        'job_position': '',
                                      },
-            'Profile Edit': {
-                                'First Name': '',
-                                'Middle Name': '',
-                                'Last Name': '',
-                                'Extension': '',
-                                'Age': '',
-                                'Address': '',
-                                'Contact Number': '',
-                                'Email': '',
-                                'Sex': '',
-                                'Department': '',
-                                'Job Position': '',
-                            },
             'Payroll Data': {
-                                'Employee Name': '',
-                                'Wage Per Hour': '',
+                                'emp_employeeName': '',
+                                'job_wage': '',
                                 'Total Hours (Week)': '',
                                 'Gross Pay (Week)': '',
                                 'Total Hours (Month)': '',
                                 'Gross Pay (Month)': '',
-                                'Department': '',
-                                'Job Position': '',
+                                'job_department': '',
+                                'job_position': '',
                                 'Mode of Payment': '',
-                                'Employee ID': ''
+                                'emp_id': ''
                             }
         };
+        // parse input data
+            // text / password / email
+        for(let i = 0; i < parseInputClass.length; i++){                                            // no need to check popUpDataInput is guaranteed to exist
+            
+            popUpDataInput[popUpId][parseInputClass[i].name] = parseInputClass[i].value;
+
+        };
+
+        // parse sex
+        let parseSex = popUpData.getElementsByClassName('Sex');
+        for(let i = 0; i < parseSex.length; i++){
+
+            if(parseSex[i].checked){                                            // checks if radio is true
+
+                popUpDataInput[popUpId][parseSex[i].name] = parseSex[i].value;
+
+            }
+
+        }
+        
+        // parse dropDown data
+        let parseDepartDropDown = popUpData.getElementsByClassName('departDropDownPopUp');
+        let parseJobPosiDropDown = popUpData.getElementsByClassName('jobPosiDropDownPopUp');
+
+        if(parseDepartDropDown.length != 0){
+            popUpDataInput[popUpId][parseDepartDropDown[0].name] = parseDepartDropDown[0].value;                                                                       // 0 for it is only one popUp at a time
+            popUpDataInput[popUpId][parseJobPosiDropDown[0].name] = parseJobPosiDropDown[0].value;
+        }
+
 
         return popUpDataInput;
     }
 
+    var whereAddingNow = false;
     function executePopUpAccCreate(){
+        highlightedRoww = "";
 
-        closePopUpp(popUpRowDataAccountCreate);
-        loadPopUp(highlightedRoww, popUpRowDataEmployee, "addEmployee");
-        blockAndBlur.style.display = "none";
-        
-        // clear popUp inputs
+        resetObjectPlaceholder();                                                           // always reset
+        collectQuery(getPopUpData(popUpRowDataAccountCreate));
+
+        closePopUpp(0);
+
+        whereAddingNow = true;
+
         clearPopUpsInputs();
+        loadPopUp(highlightedRoww, popUpRowDataEmployee, "addEmployee");
     }
 
-    function executePopUpEmployeeData(){
+    function executePopUpEmployeeAddData(){
+        resetObjectPlaceholder();                                                   // FINAL INPUT
+        if(whereAddingNow){
+            inputQueryAdminEmployeeTable(collectQuery(getPopUpData(popUpRowDataEmployee)));
+        }else{
+            alterQueryAdminEmployeeTable(collectQuery(getPopUpData(popUpRowDataEmployee)));
+        }
 
-        closePopUpp(popUpRowDataEmployee);
-        blockAndBlur.style.display = "none";
+        clearPopUpsInputs();
+
+        whereAddingNow = false
+        
+        closePopUpp(1);
     }
 
-    function executePopUpPayroll(){
+    function executePopUpEditPayroll(){
+        alert("ADFDD");
 
+        alterQueryAdminPayroll(collectQuery(getPopUpData(popUpRowDataPayroll)));
+        resetObjectPlaceholder();                                                       // FINAL INPUT
+        clearPopUpsInputs();
 
-        closePopUpp(popUpRowDataPayroll);
-        blockAndBlur.style.display = "none";
+        closePopUpp(2);
     }

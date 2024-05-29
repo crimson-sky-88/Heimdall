@@ -19,46 +19,126 @@
             <h2 class="site-name">Heimdall</h2>
             <div class="function-nav">
                 <h3>Navigation</h3>
-                <form action="admin-dashboard.php" method="post" class="">
-                    <button name="dashboardButton" type="submit">Dashboard</button>
-                    <button name="employeesButton" type="submit" onclick="changeTab()">Employees</button>
-                    <button name="employeePayrollButton" type="submit" onclick="changeTab()">Employee Payroll</button>
-                    <button name="logOutButton" type="submit">Log Out</button>
+                <form action="admin-dashboard.php" method="post">
+                    <button id='dashboardButton' name='dashboardButton' type="button">Dashboard</button>        <!-- REMOVE NAME ATTRIBUTE-->
+                    <button id='employeesButton' name='employeesButton' type="button">Employees</button>
+                    <button id='employeePayrollButton' name='employeePayrollButton' type="button">Employee Payroll</button>
+                    <button id='logOutButton' name='logOutButton' type="button">Log Out</button>
                 </form>
             </div>
         </div>
         <div class="dashboard-container">
-            <!-- PHP script to display tab contents upon click goes here -->
-            
-            <!--
+    
+<!-- DASHBOARD TAB -->
+        <div class='dashboard-content-wrapper' id='dashboardTab' style='display: block'>
+            <div class='employee-stat'>
+                <div class='stat-container'>
+                    <p>Total Employees</p>
+                    <h4>999</h4>
+                </div>
+                <div class='stat-container'>
+                    <p>Employees Present</p>
+                    <h4>5</h4>
+                </div>
+                <div class='stat-container'>
+                    <p>Date</p>
+                    <h4>01 January 1943 </h4>
+                </div>
+            </div>
+            <div class='attendance-table'>
+                <div class='employee-table-wrapper'>
+                    <div class='table-header'>
+                        <h3>Attendance List</h3>
+                        <form action='admin-dashboard.php' method='post'>
+                            <select class='departDropDownFilter' name='Department' onchange='departmentClik()'>
+                                <option value='' disabled selected>Department</option>
+                                <option value='Albion Online'>Albion Online</option>
+                                <option value='League of Legends'>League of Legends</option>
+                                <option value='Minecraft'>Minecraft</option>
+                            </select>
+                            <select class='jobPosiDropDownFilter' name='Job Position'>
+                                <option value='' disabled selected>Job Position</option>
+                            </select>
+                        </form>
+                    </div>
+                    <div class='attendance-table-container'>
+                        <table id='dashboardTable'>
 
-                // wait for button pressed          // Dashboard, Employees, Employees Payroll, Log Out
-                    // create an identifyer (on what button is pressed) then only that tab/table is live(where query data is put)
-
-                // load right tab                 // hide/show
-                    // load dynamic table
-                
-                // query default values into table
-                    // default: load everything unfiltered            // ex. load all employee record in employee table from database
-                        // can be filtered?
-                
-                // 
-
-            -->
-
-            <?php 
-
-                include_once 'snippets/backend/tabLoader.php';
-
-            ?>
-
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
 
+<!-- EMPLOYEE TAB -->
+        <div class='employee-table-wrapper' id='employeeTab' style='display: block'>            
+            <div class='table-header'>
+                <h3>Employees</h3>
+            </div>
+            <form action='admin-dashboard.php' method='post'>
+                    <select class='departDropDownFilter' name='Department' onchange='departmentClik()'>
+                        <option value='' disabled selected>Department</option>
+                        <option value='Albion Online'>Albion Online</option>
+                        <option value='League of Legends'>League of Legends</option>
+                        <option value='Minecraft'>Minecraft</option>
+                    </select>
+                    <select class='jobPosiDropDownFilter' name='Job Position'>
+                        <option value='' disabled selected>Job Position</option>
+                    </select>
+                </form>
+
+            <div class='table-container'>
+            <table id='employeeTable'>
+
+            </table>
+            </div>
+            <div class='table-controls'>
+                <form action='admin-dashboard.php'>
+                    <button id='addEmployee' type='button' onclick='addEmployeee()'>Add Employee</button>
+                    <button id='editData' type='button' onclick='editDataa()'>Edit Employee</button>
+                    <button id='deleteData' type='button' onclick='deleteDataa()'>Delete Employee</button>
+                </form>
+            </div>
+        </div>
+
+<!-- EMPLOYEE SALARY TAB -->
+        <div class='employee-table-wrapper' id='employeeSalaryTab' style='display: block'>
+            <div class='table-header'>
+                <h3>Employee Payroll</h3>
+            </div>
+
+            <form action='admin-dashboard.php' method='post'>
+                <select class='departDropDownFilter' name='Department' onchange='departmentClik()'>
+                    <option value='' disabled selected>Department</option>
+                    <option value='Albion Online'>Albion Online</option>
+                    <option value='League of Legends'>League of Legends</option>
+                    <option value='Minecraft'>Minecraft</option>
+                </select>
+                <select class='jobPosiDropDownFilter' name='Job Position'>
+                    <option value='' disabled selected>Job Position</option>
+                </select>
+            </form>
+            <div class='table-container'>        
+            <table id = 'employeeSalaryTable'>
+
+            </table>
+
+            </div>
+            <div class='table-controls'>
+                <form action=''>
+                    <button type='button' onclick='editPayrollDataa()'>Edit Payroll Data</button>
+                    <button type='button' onclick='printPayrollDataa()'>Print Payroll Data</button>
+                </form>
+            </div>
+        </div>
+
+        </div>
     </div>
 
     <div id='blockAndBlur' style="width: 100%; height: 100%; position: absolute; left: 0px; top: 0px;
             background: rgba(0,0,0, 0.3); display: none">
     </div>
+
     <?php 
         
         include_once 'snippets/employee-account-creation-pop-up.php';
@@ -72,9 +152,12 @@
             require '../admin/snippets/footer.php';
         ?>
     </footer>
-
-    <script src="snippets/backend/adminFunctions.js"> </script>
     
+    <script src="snippets/backend/adminFunctions.js" type='text/javascript'> </script>
+
+    <?php 
+    include_once 'snippets/backend/dynamicTableLoader.php';
+    ?>
 
 </body>
 

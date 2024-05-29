@@ -6,34 +6,34 @@
             <div class='form-header'>
                 <h3>Payroll Data</h3>
             </div>
-            <form action='backend/adminFunctions.js' method='post'>
+            <form action='admin-dashboard.php' method='post'>
                 <div class='input-group-registration'>
-                    <input class='popUpInputs' type='text' name='Employee Name' placeholder='Employee Name' disabled>
+                    <input class='popUpInputs' type='text' name='emp_employeeName' placeholder='Employee Name' disabled>
                 </div>
                 <div class='input-group-registration'>
-                    <input class='popUpInputs' type='text' name='Wage Per Hour' placeholder='Wage Per Hour' >
+                    <input class='popUpInputs' type='text' name='job_wage' placeholder='Wage Per Hour'>
                 </div>
                 <div class='input-group-registration'>
-                    <input class='popUpInputs' type='text' name='Total Hours (Week)' placeholder='Total Hours (Week)' disabled>
+                    <input class='popUpInputs' class='popUpInputCalculate' type='text' name='Total Hours (Week)' placeholder='Total Hours (Week)' disabled>
                 </div>
                 <div class='input-group-registration'>
-                    <input class='popUpInputs' type='text' name='Gross Pay (Week)' placeholder='Gross Pay (Week)' disabled>
+                    <input class='popUpInputCalculate' type='text' name='Gross Pay (Week)' placeholder='Gross Pay (Week)' disabled>
                 </div>
                 <div class='input-group-registration'>
-                    <input class='popUpInputs' type='text' name='Total Hours (Month)' placeholder='Total Hours (Month)' disabled>
+                    <input class='popUpInputCalculate' type='text' name='Total Hours (Month)' placeholder='Total Hours (Month)' disabled>
                 </div>
                 <div class='input-group-registration'>
-                    <input class='popUpInputs' type='text' name='Gross Pay (Month)' placeholder='Gross Pay (Month)' disabled>
+                    <input class='popUpInputCalculate' type='text' name='Gross Pay (Month)' placeholder='Gross Pay (Month)' disabled>
                 </div>
                 
                 <div class='input-group-registration-select'>
-                    <select class='departDropDownPopUp' name='Department' onchange='departmentClicked()'>
+                    <select class='departDropDownPopUp' name='job_department' onchange='departmentClicked()' disabled>
                         <option value='' disabled selected>Department</option>
                         <option value='Albion Online'>Albion Online</option>
                         <option value='League of Legends'>League of Legends</option>
                         <option value='Minecraft'>Minecraft</option>
                     </select>
-                        <select class='jobPosiDropDownPopUp' name='Job Position'>
+                        <select class='jobPosiDropDownPopUp' name='job_position' disabled>
                             <option value='' disabled selected>Job Position</option>
                         </select>
                     <select name='Mode of Payment'>
@@ -43,11 +43,11 @@
                         <option value='PayPal'>PayPal</option>
                     </select>
                     <div class='input-group-registration'>
-                        <input type='text' name='Employee ID' class='popUpInputs' placeholder='Employee ID' disabled>
+                        <input type='text' class='popUpInputs' name='emp_id' placeholder='Employee ID' disabled>
                     </div>
                 </div>
                 <div class='pop-up-form-control'>
-                    <button type='button' onclick='executePopUpPayroll()'>Confirm</button>
+                    <button type='submit' onclick='executePopUpEditPayroll()' name='buttonPopUpEditPayroll'>Confirm</button>
                     <button type='button' onclick='closePopUpp(2)'>Cancel</button>
                 </div>
             </form>

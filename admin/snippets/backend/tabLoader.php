@@ -1,6 +1,4 @@
-<?php
-    //include_once 'dynamicTableLoader.php';
-
+<?php                           // REMOVE RTHIS
     // DYNAMIC TAB
     {   // disgusting                                                           // no time for cool lookin code 
 
@@ -13,8 +11,11 @@
                 // might need to change for joins
             //loadTable($result);
             
+            // REMOVE ALL THIS SHT
+            // PUT ALL TO admin-dashboard.php as html format                // REMOVE TABLE ELEMENTS (they will be dynamically allocated)
+            // ONLY SHOW WHOLE PARENT DIV IF SPECIFIC BUTTON TAB PRESSED    // ex. dashboardTab.style.display = 'block'/'none'
             echo"
-            <div class='dashboard-content-wrapper'>
+            <div class='dashboard-content-wrapper' id='dashboardTab'>
             <div class='employee-stat'>
                 <div class='stat-container'>
                     <p>Total Employees</p>
@@ -33,20 +34,20 @@
                 <div class='employee-table-wrapper'>
                     <div class='table-header'>
                         <h3>Attendance List</h3>
-                        <form action=''>
-                            <select id='Departments'>
+                        <form action='admin-dashboard.php' method='post'>
+                            <select class='departDropDownFilter' name='Department' onchange='departmentClik()'>
                                 <option value='' disabled selected>Department</option>
-                                <option value='albion-online'>Albion Online</option>
-                                <option value='league-of-legends'>League of Legends</option>
-                                <option value='minecraft'>Minecraft</option>
+                                <option value='Albion Online'>Albion Online</option>
+                                <option value='League of Legends'>League of Legends</option>
+                                <option value='Minecraft'>Minecraft</option>
                             </select>
-                            <select  id='positions'>
+                            <select class='jobPosiDropDownFilter' name='Job Position'>
                                 <option value='' disabled selected>Job Position</option>
                             </select>
                         </form>
                     </div>
                     <div class='attendance-table-container'>
-                        <table>
+                        <table id='dashboardTable'>                                     <!--REMOVE CHILDREN-->
                             <thead class='table-head'>
                                 <tr>
                                     <td>Employee ID</td>
@@ -102,12 +103,25 @@
             ob_end_clean();
     
             echo"
-            <div class='employee-table-wrapper'>
+            <div class='employee-table-wrapper' id='employeeTab'>            
             <div class='table-header'>
                 <h3>Employees</h3>
             </div>
+
+            <form action='admin-dashboard.php' method='post'>
+                    <select class='departDropDownFilter' name='Department' onchange='departmentClik()'>
+                        <option value='' disabled selected>Department</option>
+                        <option value='Albion Online'>Albion Online</option>
+                        <option value='League of Legends'>League of Legends</option>
+                        <option value='Minecraft'>Minecraft</option>
+                    </select>
+                    <select class='jobPosiDropDownFilter' name='Job Position'>
+                        <option value='' disabled selected>Job Position</option>
+                    </select>
+                </form>
+
             <div class='table-container'>
-            <table>
+            <table id='employeeTable'>                                                     <!--REMOVE CHILDREN-->
                 <thead id='tableHead' class='table-head'>
                     <tr>
                         <th>First Name</th>
@@ -209,32 +223,26 @@
             ob_end_clean();
     
             echo"
-                <div class='employee-table-wrapper'>
+                <div class='employee-table-wrapper' id='employeeSalaryTab'>
                     <div class='table-header'>
                         <h3>Employee Payroll</h3>
                     </div>
 
                     <form action='admin-dashboard.php' method='post'>
-                        <select class='departDropDownFilter'>
-                            <option value='Department'> Department </option>
-                            <option value='Lumberjack'> Lumberjack </option>
-                            <option value='Miner'> Miner </option>
-                            <option value='Skinner'> Skinner </option>
-                            <option value='Harverster'> Harverster </option>
+                        <select class='departDropDownFilter' name='Department' onchange='departmentClik()'>
+                            <option value='' disabled selected>Department</option>
+                            <option value='Albion Online'>Albion Online</option>
+                            <option value='League of Legends'>League of Legends</option>
+                            <option value='Minecraft'>Minecraft</option>
                         </select>
-                        <select class='jobPosiDropDownFilter'>
-                            <option value='Job Position'> Job Position </option>
-                            <option value='Top Laner'> Top Laner</option>
-                            <option value='Jungler'> Jungler </option>
-                            <option value='Mid'> Mid </option>
-                            <option value='Bottom'> Bottom </option>
-                            <option value='Support'> Support </option>
+                        <select class='jobPosiDropDownFilter' name='Job Position'>
+                            <option value='' disabled selected>Job Position</option>
                         </select>
                     </form>
 
                     <div class='table-container'>
                 
-                    <table>
+                    <table id = 'employeeSalaryTable'>                                          <!--REMOVE CHILDREN-->
                     <thead id='tableHead' class='table-head'>
                         <tr>
                             <td>Employee ID</td>
@@ -315,11 +323,14 @@
                         </form>
                     </div>
                 </div>
-            ";
+            
+                ";
     
         }
 
         ob_end_clean();
+
+        //include_once 'dynamicTableLoader.php';
     }
    
 
