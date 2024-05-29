@@ -4,7 +4,9 @@
 <script type='text/javascript'>
 
 // SAVIOR
-    queriesPlaceholderInput = document.getElementById("queriesPlaceholderInput");
+    queryPlaceholderEmployeeTable = document.getElementById("queryPlaceholderEmployeeTable");
+    queryPlaceholderEmployeePayroll = document.getElementById("queryPlaceholderEmployeePayroll");
+
 
 // TABLES
     var dashboardTable = document.getElementById('dashboardTable');
@@ -52,13 +54,13 @@
 
     // mysql Query
     if(isset($_POST['buttonPopUpEmployeeAddData'])){
-        insertEmployee($_POST['queriesPlaceholderInput']);
+        anyInsertQuery($_POST['queryPlaceholderEmployeeTable']);
     }
 
     if(isset($_POST['buttonPopUpEditPayroll'])){
-        alterQueryEmployeeTable($_POST['queriesPlaceholderInput']);
-
-    }
+        echo "alert('asdasd')";
+        anyInsertQuery($_POST['queryPlaceholderEmployeePayroll']);
+    }   
 
 ?>
 
@@ -87,7 +89,7 @@
             currentTab = employeeSalaryTable;
             outputPAYROLL(currentTab);
         }
-        
+
     }
 
     function outputATTENDANCE(currentTab){              
@@ -329,6 +331,7 @@
                                         'emp_sex': '',
                                         'job_department': '',
                                         'job_position': '',
+                                        'emp_id': ''
                                      },
             'Payroll Data': {
                                 'emp_employeeName': '',
@@ -348,9 +351,9 @@
 
     function collectQuery(x){                           // concatinate all collected data
 
-            // only for the loops
+        // only for the loops
         let accCreateArray = ["emp_username", "emp_password"];
-        let employeeRegisArray = ["emp_firstname", "emp_middlename", "emp_lastname", "emp_extension", "emp_age", "emp_address", "emp_contactNumber", "emp_email", "emp_sex", "job_department", "job_position"];
+        let employeeRegisArray = ["emp_firstname", "emp_middlename", "emp_lastname", "emp_extension", "emp_age", "emp_address", "emp_contactNumber", "emp_email", "emp_sex", "job_department", "job_position", "emp_id"];
         let payrollDataArray = ["job_wage", "Total Hours (Week)", "Gross Pay (Week)", "Total Hours (Month)", "Gross Pay (Month)", "job_department", "job_position", "Mode of Payment", "emp_id"];
                 // ^ removed emp_employeeName for this is only for show
         for(let i = 0; i < accCreateArray.length; i++){
@@ -386,19 +389,33 @@
         }
 
         let addquery = "INSERT INTO employee (emp_username, emp_password, emp_firstname, emp_middlename, emp_lastname, emp_extension, emp_age, emp_sex, emp_address, emp_contactNumber, emp_email ,emp_jobid)";
-            addquery += "VALUES ( '"  + x["Employee Registration"]["emp_username"] + "', '" + x["Employee Registration"]["emp_password"] + "', '" + x["Employee Registration"]["emp_firstname"] + "', '" + x["Employee Registration"]["emp_middlename"] + "', '" + x["Employee Registration"]["emp_lastname"];
+            addquery += "VALUES ( '"  + x["Account Creation"]["emp_username"] + "', '" + x["Account Creation"]["emp_password"] + "', '" + x["Employee Registration"]["emp_firstname"] + "', '" + x["Employee Registration"]["emp_middlename"] + "', '" + x["Employee Registration"]["emp_lastname"];
             addquery += "', '" + x["Employee Registration"]["emp_extension"] + "', '" + x["Employee Registration"]["emp_age"] + "', '" + x["Employee Registration"]["emp_sex"] + "', '";
             addquery += x["Employee Registration"]["emp_address"] + "', '" + x["Employee Registration"]["emp_contactNumber"] + "', '" + x["Employee Registration"]["emp_email"] + "', '" +jobPosiID + "');"
 
-        queriesPlaceholderInput.value = addquery;             // put query string to an input tag to send to php after submit
+        queryPlaceholderEmployeeTable.value = addquery;             // put query string to an input tag to send to php after submit
+        console.log(queryPlaceholderEmployeeTable.value);
     }
 
     function alterQueryAdminEmployeeTable(x){
 
-        let addquery = "update employee SET emp_firstname =" + x["Employee Registration"]["emp_firstname"] + ", emp_middlename = " + x["Employee Registration"]["emp_middlename"] + ", emp_lastname = " + x["Employee Registration"]["emp_lastname"] +  ", emp_extension = " + x["Employee Registration"]["emp_extension"];
-            addquery += ", emp_age = " + x["Employee Registration"]["emp_age"] + ", emp_sex = " + x["Employee Registration"]["emp_sex"] +  ", emp_address = " .x["Employee Registration"]["emp_address"] + ", emp_email = " +x["Employee Registration"]["emp_email"] + ", emp_contactNumber = " + x["Employee Registration"]["emp_contactNumber"] + ", emp_jobid = " .x["Employee Registration"]["emp_jobid"] + "where emp_id = " + x["Employee Registration"]["emp_id"]+ ";";
+        // special case
+        let jobPosiID;
+        let arrayOfJobPosi = ['Gatherer - Lumberjack', 'Gatherer - Harvester', 'Gatherer - Skinner', 'Gatherer - Fisherman', 'Gatherer - Miner', 'Gatherer - Quarrier', 'Top Laner', 'Mid Laner', 'Bot Laner', 'Jungler', 'Support', 'Gatherer', 'Builder', 'Crafter', 'Adventurer'];
+        for(let i = 0; i < arrayOfJobPosi.length; i++){
+            if(x["Employee Registration"]['job_position'] == arrayOfJobPosi[i]){
 
-        queriesPlaceholderInput.value = addquery;
+                jobPosiID = i + 1;              // because job_id in database starts at 1
+                break;
+            }
+        }
+
+        let addquery = "update employee SET emp_firstname ='" + x["Employee Registration"]["emp_firstname"] + "', emp_middlename = '" + x["Employee Registration"]["emp_middlename"] + "', emp_lastname = '" + x["Employee Registration"]["emp_lastname"] +  "', emp_extension = '" + x["Employee Registration"]["emp_extension"];
+            addquery += "', emp_age = '" + x["Employee Registration"]["emp_age"] + "', emp_sex = '" + x["Employee Registration"]["emp_sex"] +  "', emp_address = '" + x["Employee Registration"]["emp_address"] + "', emp_email = '" +x["Employee Registration"]["emp_email"] + "', emp_contactNumber = '" + x["Employee Registration"]["emp_contactNumber"];
+            addquery += "', emp_jobid = '" + jobPosiID + "' where emp_id = '" + x["Employee Registration"]["emp_id"]+ "';";
+
+        queryPlaceholderEmployeeTable.value = addquery;
+        console.log(queryPlaceholderEmployeeTable.value);
     }
 
     function alterQueryAdminPayroll(x){
@@ -415,7 +432,9 @@
 
         let addquery = "UPDATE salary SET job_wage = " + x['Payroll Data']['job_wage'] + " where job_id = " + jobPosiID + ";";
 
-        queriesPlaceholderInput.value = addquery;
+        queryPlaceholderEmployeePayroll.value = addquery;
+        console.log(queryPlaceholderEmployeePayroll.value);
+
     }
 
 </script>
@@ -448,7 +467,7 @@
 
         $mysqlConn = mysqlCon();
 
-        $queryy = "select employee.emp_id, concat(employee.emp_firstname, ' ', employee.emp_middlename, ' ', employee.emp_lastname, ' ', employee.emp_extension) as Name, salary.job_department, salary.job_position FROM employee join salary where employee.emp_jobid = salary.job_id";
+        $queryy = "select employee.emp_id, concat(employee.emp_firstname, ' ', employee.emp_middlename, ' ', employee.emp_lastname, ' ', employee.emp_extension) as emp_employeeName, salary.job_department, salary.job_position FROM employee join salary where employee.emp_jobid = salary.job_id";
 
         $result = $mysqlConn->query($queryy);   
 
@@ -457,17 +476,7 @@
 
     }
 
-
-    function insertEmployee($queryy){                                               // must already structured
-
-        $mysqlConn = mysqlCon();
-
-        $result = $mysqlConn->query($queryy);   
-
-        $mysqlConn->close();
-    }
-
-    function alterQueryEmployeeTable($queryy){                              // update database
+    function anyInsertQuery($queryy){                                   // must already structured
 
         $mysqlConn = mysqlCon();
 

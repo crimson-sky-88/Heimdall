@@ -14,8 +14,6 @@
         var popUpRowDataEmployee = document.getElementById("popUpRowDataEmployee");
 
         function closePopUpp(passed){
-            
-            resetObjectPlaceholder();
 
             let popUpData;                                              // passed parameter from onlick
             if(passed === 0){
@@ -58,13 +56,13 @@
             var popUpValuesCounter = -1;
             for(let i = 0; i < highlightedRow.children.length; i++){                                                // i = 1 because we dont want id to show
                 popUpValuesCounter++;
+                
                 if(!isDepartOrJobPos(highlightedRow.children[i].innerText)){                                                                    // checks if for inputText
                 // put clicked row data to pop up
                 // text inputs
                     if(highlightedRow.children[i].id != "emp_sex"){
                     
                         for(let k = 0; k < highlightedRow.children.length; k++){            // dynamic search to search for all value fit
-
                             if(popUpValuesInputText[popUpValuesCounter].name == highlightedRow.children[k].id){
 
                                 popUpValuesInputText[popUpValuesCounter].value = highlightedRow.children[k].innerText;
@@ -254,27 +252,6 @@
         
     }
 
-    // Add Employee
-    function addEmployi(){
-        let popUpValuesInputText = document.getElementsByClassName("popUpInputs");    
-        
-        // show popUp
-        popUpRowDataAccountCreate.style.display = "block";
-        popUpOpen = true;
-
-        // execute / return query string 
-        let queryString;
-        queryString += "insert into employee";
-
-        for(let i = 0; i < popUpValuesInputText.length; i++){
-
-            queryString += "";
-
-        }
-
-        return queryString;
-    }
-
     // HIGHLIGHT SELECTED ROW
         var highlightedRoww = "", oldHighlightedRow;
         var oneTimeSwitch = false;
@@ -303,7 +280,8 @@
 
             dropDownID = 0;
             blockAndBlur.style.display = "block";
-            let accCreateQuerry = addEmployi();
+            popUpRowDataAccountCreate.style.display = "block";
+
             // mysql query
         }
 
@@ -444,6 +422,7 @@ function departmentSelect(departValue){
                                         'emp_sex': '',
                                         'job_department': '',
                                         'job_position': '',
+                                        'emp_id': ''
                                      },
             'Payroll Data': {
                                 'emp_employeeName': '',
@@ -461,7 +440,7 @@ function departmentSelect(departValue){
         // parse input data
             // text / password / email
         for(let i = 0; i < parseInputClass.length; i++){                                            // no need to check popUpDataInput is guaranteed to exist
-            
+            console.log(parseInputClass[i].name + " " + parseInputClass[i].value);
             popUpDataInput[popUpId][parseInputClass[i].name] = parseInputClass[i].value;
 
         };
@@ -487,15 +466,14 @@ function departmentSelect(departValue){
             popUpDataInput[popUpId][parseJobPosiDropDown[0].name] = parseJobPosiDropDown[0].value;
         }
 
-
+        
         return popUpDataInput;
     }
 
     var whereAddingNow = false;
     function executePopUpAccCreate(){
-        highlightedRoww = "";
+        highlightedRoww = "";                       //create function remove highlight
 
-        resetObjectPlaceholder();                                                           // always reset
         collectQuery(getPopUpData(popUpRowDataAccountCreate));
 
         closePopUpp(0);
@@ -507,12 +485,13 @@ function departmentSelect(departValue){
     }
 
     function executePopUpEmployeeAddData(){
-        resetObjectPlaceholder();                                                   // FINAL INPUT
         if(whereAddingNow){
             inputQueryAdminEmployeeTable(collectQuery(getPopUpData(popUpRowDataEmployee)));
         }else{
             alterQueryAdminEmployeeTable(collectQuery(getPopUpData(popUpRowDataEmployee)));
         }
+
+        resetObjectPlaceholder();
 
         clearPopUpsInputs();
 

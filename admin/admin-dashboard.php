@@ -30,7 +30,7 @@
         <div class="dashboard-container">
     
 <!-- DASHBOARD TAB -->
-        <div class='dashboard-content-wrapper' id='dashboardTab' style='display: block'>
+        <div class='dashboard-content-wrapper' id='dashboardTab' style='display: none'>
             <div class='employee-stat'>
                 <div class='stat-container'>
                     <p>Total Employees</p>
@@ -71,7 +71,7 @@
         </div>
 
 <!-- EMPLOYEE TAB -->
-        <div class='employee-table-wrapper' id='employeeTab' style='display: block'>            
+        <div class='employee-table-wrapper' id='employeeTab' style='display: none'>            
             <div class='table-header'>
                 <h3>Employees</h3>
             </div>
@@ -102,7 +102,7 @@
         </div>
 
 <!-- EMPLOYEE SALARY TAB -->
-        <div class='employee-table-wrapper' id='employeeSalaryTab' style='display: block'>
+        <div class='employee-table-wrapper' id='employeeSalaryTab' style='display: none'>
             <div class='table-header'>
                 <h3>Employee Payroll</h3>
             </div>

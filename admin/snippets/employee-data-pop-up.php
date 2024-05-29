@@ -8,7 +8,7 @@
                 </div>
                 <form action='admin-dashboard.php' method='post'>
                     <div class='input-group-registration'>
-                        <input name='queriesPlaceholderInput' id='queriesPlaceholderInput' type='text' style='display:none'>
+                        <input name='queryPlaceholderEmployeeTable' id='queryPlaceholderEmployeeTable' type='text' style='display:none'>
                         <input class='popUpInputs' name='emp_firstname' type='text' placeholder='First Name'>
                     </div>
                     <div class='input-group-registration'>

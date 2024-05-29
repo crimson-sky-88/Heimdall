@@ -1,9 +1,3 @@
-<?php
-
-    session_start();                                                                        // for LOG IN
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,8 +21,8 @@
             <div class="function-nav">
                 <h3>Navigation</h3>
                 <form action="" class="">
-                    <button id='employeeDashboardButton'>Dashboard</button>
-                    <button id='logOutButton'>Log Out</button>                                                                            <!-- CLOSE SESSION -->
+                    <button type='button' id='employeeDashboardButton'>Dashboard</button>
+                    <button type='button' id='logOutButton'>Log Out</button>                                                                            <!-- CLOSE SESSION -->
                 </form>
             </div>
         </div>
@@ -40,8 +34,8 @@
                         <h3 id='greedingWName'>Hello, (Employee First Name)</h3>
                     </div>
                     <div class="clock-in-clock-out">
-                        <button type='button' id='clockIn' onclick='clockInn()'>CLOCK IN</button>
-                        <button type='button' id='clockOut' onclick='clockOutt()'>CLOCK OUT</button>
+                        <button type='button' id='clockIn'>CLOCK IN</button>
+                        <button type='button' id='clockOut'>CLOCK OUT</button>
                     </div>
                 </div>
                 <div class="stat-container" id='employeeDetails'>
