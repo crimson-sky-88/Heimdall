@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Heimdall - SIGN IN</title>
     <link rel="stylesheet" href="stylesheets/login-page.css">
+    <link rel="stylesheet" href="stylesheets/shared-resources.css">
     <link rel="icon" type="image/x-icon" href="assets/project-logo.png">
 </head>
 
@@ -14,8 +15,8 @@
         <div class="container">
             <div class="content-container">
                 <div class="form-container">
-                    <div class="page-heading test">
-                        <div class="site-heading">
+                    <div class="page-heading">
+                        <!-- <div class="site-heading">
                             <h4>
                                 Heimdall
                             </h4>
@@ -25,7 +26,7 @@
                             <h4>
                                 Solutions
                             </h4>
-                        </div>
+                        </div> -->
                         <div class="project-logo-container">
                             <img src="assets/project-logo.png" class="project-logo">
                         </div>
@@ -34,7 +35,11 @@
                         <div class="form-header">
                             <h2>Sign in to continue</h2>
                         </div>
+<<<<<<< HEAD:index.php
                         <form action="index.php" method='post'>
+=======
+                        <form action="employee/employee-dashboard.html">
+>>>>>>> 260518c0d4f95858bf813ffe19f41bc9f2dfb4a8:index.html
                             <div class="input-group">
                                 <input name='usernameInput' type="text" placeholder="Username">
                                 <img src="assets/input-group/person.svg" class="input-img">
@@ -52,34 +57,31 @@
                             <div class="input-button">
                                 <button type='submit' name='logInButt'>LOG IN</button>
                             </div>
+<<<<<<< HEAD:index.php
 <!--
                             <div class="register">
                                 <p>Don't have an account? <a href="">Register</a></p>
                             </div>
 -->
+=======
+                            <!-- 
+                            <div class="register">
+                            <p>Don't have an account? <a href="">Register</a></p>
+                            </div> 
+                            -->
+>>>>>>> 260518c0d4f95858bf813ffe19f41bc9f2dfb4a8:index.html
                         </form>
 
-                    </div>
-                    <!-- To Do: Insert github icon that leads to the repository -->
-                </div>
-                <!-- To Do: Fix login page carousel -->
-                <div class="carousel-container ">
-                    <div class="slider-wrapper">
-                        <div class="slider test">
-                            <img src="assets/carousel/Performance Management Made Easy.png" alt="" id="slide-1">
-                            <img src="assets/carousel/Simplified Payroll Processing.png" alt="" id="slide-2">
-                            <img src="assets/carousel/Real Time Insights.png" alt="" id="slide-3">
-                        </div>
-                    </div>
-                    <div class="slider-button">
-                            <a href="#slide-1"></a>
-                            <a href="#slide-2"></a>
-                            <a href="#slide-3"></a>
                     </div>
                 </div>
             </div>
         </div>
     </main>
+    <footer>
+        <?php 
+            require 'admin/snippets/footer.php';
+        ?>
+    </footer>
 </body>
 
 </html>

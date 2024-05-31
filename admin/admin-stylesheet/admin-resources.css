@@ -13,10 +13,32 @@
     display: inherit;
     flex-direction: column;
     row-gap: 1em;
+    background: #F1EEDC;
+    padding: 1em;
+    border-radius: 20px;
+    box-shadow: 1px 1px 5px gray;
 }
 
 .table-header {
-    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.table-header form{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.table-header form select {
+    padding: 0.5em;
+    background: transparent;
+    border: 1px solid black;
+    border-radius: 10px;
+    outline: none;
+    color: black;
 }
 
 .attendance-table-container,
@@ -139,6 +161,7 @@ thead tr th{
     height: 100%;
     display: flex;
     flex-wrap: wrap;
+    gap: 5px;
 }
 
 .form-container form .input-group-registration {
@@ -158,6 +181,11 @@ thead tr th{
     outline: none;
     padding-left: 15px;
     color: black;
+}
+
+.input-group-registration input:disabled {
+    background-color: gainsboro;
+
 }
 
 .input-group-registration input::placeholder {
@@ -185,8 +213,10 @@ thead tr th{
     width: 100%;
     height: 40px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 10px;
 }
 
 .input-group-registration-select select {
