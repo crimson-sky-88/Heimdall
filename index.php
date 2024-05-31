@@ -1,3 +1,9 @@
+<?php
+    session_start();
+    $_SESSION['whatTabAmI'] = "employeeSalary";
+    $_SESSION['dashboardSearchFiltered'] = "false";
+    $_SESSION['employeeSearchFiltered'] = "false";
+?>
 <!DOCTYPE html>
 <html lang="en">
 

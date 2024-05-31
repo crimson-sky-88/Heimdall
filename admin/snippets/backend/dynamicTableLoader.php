@@ -153,9 +153,9 @@
         if(x == 0){
             querry = "select employee.emp_id, concat(employee.emp_firstname, ' ',employee.emp_middlename, ' ',employee.emp_lastname, ' ', employee.emp_extension) as emp_employeeName, salary.job_department, salary.job_position, att_month, att_day, att_year from employee join attendance_data on employee.emp_id=attendance_data.employee_id join salary on employee.emp_jobid=salary.job_id where att_day = '" + <?php echo date('d')?> + "' and att_month = '" + "<?php echo date('M')?>" + "' and att_year = '" + <?php echo date('Y')?> + "'";
         }else if(x == 1){
-            querry = "select employee.emp_id, concat(employee.emp_firstname, ' ', employee.emp_middlename, ' ', employee.emp_lastname, ' ', employee.emp_extension) as emp_employeeName , employee.emp_extension, salary.job_department, salary.job_position, salary.job_wage FROM employee JOIN salary WHERE employee.emp_jobid=salary.job_id";
-        }else if(x == 2){
             querry = "select employee.emp_id, employee.emp_firstname, employee.emp_middlename, employee.emp_lastname, employee.emp_extension, employee.emp_age, employee.emp_sex, employee.emp_address, employee.emp_email, employee.emp_contactNumber, salary.job_department, salary.job_position from employee join salary where employee.emp_jobid=salary.job_id";
+        }else if(x == 2){
+            querry = "select employee.emp_id, concat(employee.emp_firstname, ' ', employee.emp_middlename, ' ', employee.emp_lastname, ' ', employee.emp_extension) as emp_employeeName , employee.emp_extension, salary.job_department, salary.job_position, salary.job_wage FROM employee JOIN salary WHERE employee.emp_jobid=salary.job_id";
         }
         
         queryPlaceholderEmployeeTab.value = filterQueries(querry, x);
