@@ -37,7 +37,7 @@
     
 <!-- DASHBOARD TAB -->
         <div class='dashboard-content-wrapper' id='dashboardTab' style='display: block'>
-            <!-- <div class='employee-stat'>
+            <div class='employee-stat'>
                 <div class='stat-container'>
                     <p>Total Employees</p>
                     <h4>999</h4>
@@ -50,7 +50,7 @@
                     <p>Date</p>
                     <h4>01 January 1943 </h4>
                 </div>
-            </div> -->
+            </div>
             <div class='attendance-table'>
                 <div class='employee-table-wrapper'>
                     <div class='table-header'>
