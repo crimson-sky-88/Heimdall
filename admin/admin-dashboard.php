@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +26,7 @@
                     <button id='dashboardButton' name='dashboardButton' type="button">Dashboard</button>        <!-- REMOVE NAME ATTRIBUTE-->
                     <button id='employeesButton' name='employeesButton' type="button">Employees</button>
                     <button id='employeePayrollButton' name='employeePayrollButton' type="button">Employee Payroll</button>
-                    <button id='logOutButton' name='logOutButton' type="button">Log Out</button>
+                    <button id='logOutButton' type="button">Log Out</button>
                 </form>
             </div>
         </div>
@@ -49,16 +52,20 @@
                 <div class='employee-table-wrapper'>
                     <div class='table-header'>
                         <h3>Attendance List</h3>
-                        <form action='admin-dashboard.php' method='post'>
-                            <select class='departDropDownFilter' name='Department' onchange='departmentClik()'>
+                        <form action='admin-dashboard.php' method='post' id='dashboardTabForm'>
+                            <input type='text' id='queryPlaceholderDashboardTab' name='queryPlaceholderDashboardTab' style='display:none'>
+                            <input type='number' class='inputFilterFindID' placeholder='Employee ID'>
+                            <select class='departDropDownFilter' name='Department' onchange='departmentClik(0)'>
                                 <option value='' disabled selected>Department</option>
+                                <option value='All Department'>All Department</option>
                                 <option value='Albion Online'>Albion Online</option>
                                 <option value='League of Legends'>League of Legends</option>
                                 <option value='Minecraft'>Minecraft</option>
                             </select>
                             <select class='jobPosiDropDownFilter' name='Job Position'>
-                                <option value='' disabled selected>Job Position</option>
+                                <option value='Job Position' disabled selected>Job Position</option>
                             </select>
+                            <button type='submit' onclick="dashboardTabFilter()" name='filterSearchDashboardTab'> SEARCH </button>
                         </form>
                     </div>
                     <div class='attendance-table-container'>
@@ -75,25 +82,30 @@
             <div class='table-header'>
                 <h3>Employees</h3>
             </div>
-            <form action='admin-dashboard.php' method='post'>
-                    <select class='departDropDownFilter' name='Department' onchange='departmentClik()'>
-                        <option value='' disabled selected>Department</option>
-                        <option value='Albion Online'>Albion Online</option>
-                        <option value='League of Legends'>League of Legends</option>
-                        <option value='Minecraft'>Minecraft</option>
-                    </select>
-                    <select class='jobPosiDropDownFilter' name='Job Position'>
-                        <option value='' disabled selected>Job Position</option>
-                    </select>
-                </form>
-
+            <form action='admin-dashboard.php' method='post' id='employeeTabForm'>
+                <input type='text' id='queryPlaceholderEmployeeTab' name='queryPlaceholderEmployeeTab' style='display:none'>
+                <input type='number' class='inputFilterFindID' placeholder='Employee ID'>
+                <select class='departDropDownFilter' name='Department' onchange='departmentClik(1)'>
+                    <option value='' disabled selected>Department</option>
+                    <option value='All Department'>All Department</option>
+                    <option value='Albion Online'>Albion Online</option>
+                    <option value='League of Legends'>League of Legends</option>
+                    <option value='Minecraft'>Minecraft</option>
+                </select>
+                <select class='jobPosiDropDownFilter' name='Job Position'>
+                    <option value='Job Position' disabled selected>Job Position</option>
+                </select>
+                <button type='button' onclick="employeeTabFilter(2)" name='filterSearchEmployeeTab'> SEARCH </button>
+            </form>
             <div class='table-container'>
             <table id='employeeTable'>
 
             </table>
             </div>
             <div class='table-controls'>
-                <form action='admin-dashboard.php'>
+                <form action='admin-dashboard.php' method="post">
+                    <input type='text' name='attendanceQueryPlaceholder' id='attendanceQueryPlaceholder' style="display: none;">
+                    <button type='submit' onclick='presentEmployeeee()' name='presentEmployee'>Present Employee</button>            <!-- first execute onclick then name (name is being tracked by php)  THIS SHITS CRAAAZZYYYY-->
                     <button id='addEmployee' type='button' onclick='addEmployeee()'>Add Employee</button>
                     <button id='editData' type='button' onclick='editDataa()'>Edit Employee</button>
                     <button id='deleteData' type='button' onclick='deleteDataa()'>Delete Employee</button>
@@ -101,22 +113,26 @@
             </div>
         </div>
 
-<!-- EMPLOYEE SALARY TAB -->
+<!-- EMPLOYEE PAYROLL TAB -->
         <div class='employee-table-wrapper' id='employeeSalaryTab' style='display: none'>
             <div class='table-header'>
                 <h3>Employee Payroll</h3>
             </div>
 
-            <form action='admin-dashboard.php' method='post'>
-                <select class='departDropDownFilter' name='Department' onchange='departmentClik()'>
+            <form action='admin-dashboard.php' method='post' id='employeePayrollTabForm'>
+                <input type='text' id='queryPlaceholderPayrollTab' name='queryPlaceholderPayrollTab' style='display:none'>
+                <input type='number' class='inputFilterFindID' placeholder='Employee ID'>
+                <select class='departDropDownFilter' name='Department' onchange='departmentClik(2)'>
                     <option value='' disabled selected>Department</option>
+                    <option value='All Department'>All Department</option>
                     <option value='Albion Online'>Albion Online</option>
                     <option value='League of Legends'>League of Legends</option>
                     <option value='Minecraft'>Minecraft</option>
                 </select>
                 <select class='jobPosiDropDownFilter' name='Job Position'>
-                    <option value='' disabled selected>Job Position</option>
+                    <option value='Job Position' disabled selected>Job Position</option>
                 </select>
+                <button type='submit' onclick='payrollTabFilter()' name='filterSearchPayrollTab'> SEARCH </button>
             </form>
             <div class='table-container'>        
             <table id = 'employeeSalaryTable'>

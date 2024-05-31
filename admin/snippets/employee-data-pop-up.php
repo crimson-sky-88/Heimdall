@@ -6,7 +6,7 @@
                 <div class='form-header'>
                     <h3>Employee Registration</h3>
                 </div>
-                <form action='admin-dashboard.php' method='post'>
+                <form action='admin-dashboard-employees.php' method='post'>
                     <div class='input-group-registration'>
                         <input name='queryPlaceholderEmployeeTable' id='queryPlaceholderEmployeeTable' type='text' style='display:none'>
                         <input class='popUpInputs' name='emp_firstname' type='text' placeholder='First Name'>

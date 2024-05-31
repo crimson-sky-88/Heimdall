@@ -34,25 +34,29 @@
                         <div class="form-header">
                             <h2>Sign in to continue</h2>
                         </div>
-                        <form action="admin/admin-dashboard.html">
+                        <form action="index.php" method='post'>
                             <div class="input-group">
-                                <input type="text" placeholder="Username">
+                                <input name='usernameInput' type="text" placeholder="Username">
                                 <img src="assets/input-group/person.svg" class="input-img">
                             </div>
                             <div class="input-group">
-                                <input type="text" placeholder="Password">
+                                <input name='passwordInput' type="password" placeholder="Password">
                                 <img src="assets/input-group/lock.svg" class="input-img">
                             </div>
+<!--
                             <div class="remember-me">
                                 <label><input type="checkbox"> Remember Me?</label>
                                 <a href="#" class="forgot-password">Forgot Password?</a>
                             </div>
+-->
                             <div class="input-button">
-                                <button>LOG IN</button>
+                                <button type='submit' name='logInButt'>LOG IN</button>
                             </div>
+<!--
                             <div class="register">
                                 <p>Don't have an account? <a href="">Register</a></p>
                             </div>
+-->
                         </form>
 
                     </div>
@@ -79,3 +83,18 @@
 </body>
 
 </html>
+<?php
+
+    if(isset($_POST['logInButt'])){
+        
+        if($_POST['usernameInput'] == "admin" && $_POST['passwordInput'] == "admin"){
+           header("Location: admin/admin-dashboard-dashboard.php");
+        }else{
+
+            ?><script>alert("Wrong Credentials!!")</script><?php
+
+        };
+
+    }
+
+?>

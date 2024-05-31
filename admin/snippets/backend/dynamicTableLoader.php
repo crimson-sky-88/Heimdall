@@ -4,20 +4,19 @@
 <script type='text/javascript'>
 
 // SAVIOR
-    queryPlaceholderEmployeeTable = document.getElementById("queryPlaceholderEmployeeTable");
-    queryPlaceholderEmployeePayroll = document.getElementById("queryPlaceholderEmployeePayroll");
-
+    var attendanceQueryPlaceholder = document.getElementById("attendanceQueryPlaceholder");
+    var queryPlaceholderEmployeeTable = document.getElementById("queryPlaceholderEmployeeTable");
+    var queryPlaceholderEmployeePayroll = document.getElementById("queryPlaceholderEmployeePayroll");
 
 // TABLES
+
     var dashboardTable = document.getElementById('dashboardTable');
     var employeeTable = document.getElementById('employeeTable');
     var employeeSalaryTable = document.getElementById('employeeSalaryTable');
 
 // MAIN TABS
 
-    var dashboardTab = document.getElementById('dashboardTab');
     var employeeTab = document.getElementById('employeeTab');
-    var employeeSalaryTab = document.getElementById('employeeSalaryTab');
 
 // BUTTONS 
 
@@ -27,65 +26,246 @@
 
     dashboardButton.addEventListener("click", () => {
 
-        dashboardTab.style.display = "block";
+        document.location.href = "admin-dashboard-dashboard.php";
         employeeTab.style.display = "none";
-        employeeSalaryTab.style.display = "none";
 
     });
 
     employeesButton.addEventListener("click", () => {
 
-        dashboardTab.style.display = "none";
-        employeeTab.style.display = "block";
-        employeeSalaryTab.style.display = "none";
+        document.location.href = "admin-dashboard-employees.php";
 
     });
 
     employeePayrollButton.addEventListener("click", () => {
 
-        dashboardTab.style.display = "none";
+        document.location.href = "admin-dashboard-employeePayroll.php";
         employeeTab.style.display = "none";
-        employeeSalaryTab.style.display = "block";
 
     });
+
+    // LOG OUT
+        var logOutButton = document.getElementById('logOutButton');
+        logOutButton.addEventListener('click', () => {
+
+            if(confirm("Are you sure to Log Out?")){
+                document.location.href = "../index.php";
+            }
+
+        })
+
+    // PRESENT EMPLOYEE
+
+        function presentEmployeeee(){
+            if(highlightedRoww != ""){
+                
+                // get year, month, day
+                <?php
+                    $year = date("Y");
+                    $month = date("M");
+                    $day = date("d");
+                ?>
+                // insert into attendance_data
+
+                let emp_id = highlightedRoww.children[0].innerText;
+
+                let queryy = "insert into attendance_data(employee_id, att_year, att_month, att_day) values("+ emp_id +",'"+ "<?php echo $year ?>" +"','"+ "<?php echo $month ?>" +"',"+ "<?php echo $day ?>" +")";
+                console.log(queryy);
+                attendanceQueryPlaceholder.value = queryy;
+            }
+        }
 
 // BUTTONS BUT PHP
 <?php
 
     // mysql Query
+    if(isset($_POST['presentEmployee'])){
+        anyInsertQuery($_POST['attendanceQueryPlaceholder']);
+    }
+
     if(isset($_POST['buttonPopUpEmployeeAddData'])){
         anyInsertQuery($_POST['queryPlaceholderEmployeeTable']);
     }
 
     if(isset($_POST['buttonPopUpEditPayroll'])){
-        echo "alert('asdasd')";
         anyInsertQuery($_POST['queryPlaceholderEmployeePayroll']);
     }   
 
+// DELETE DATA
+    if(isset($_POST['deleteDataa'])){
+
+        anyInsertQuery($_POST['attendanceQueryPlaceholder']);
+
+    }
+
 ?>
+
+// DELETE DATA
+
+    function deleteDataaa(){
+
+        if(highlightedRoww != ""){
+        // insert into employee
+            let emp_id = highlightedRoww.children[0].innerText;
+
+            let queryy = "delete from employee where emp_id = " + emp_id + ";";
+            console.log(queryy);
+
+            if(confirm("Are you sure to delete this employee?")){
+                attendanceQueryPlaceholder.value = queryy;
+            }else{
+                queryy = "select employee.emp_id, employee.emp_firstname, employee.emp_middlename, employee.emp_lastname, employee.emp_extension, employee.emp_age, employee.emp_sex, employee.emp_address, employee.emp_email, employee.emp_contactNumber, salary.job_department, salary.job_position from employee join salary where employee.emp_jobid=salary.job_id;";
+                attendanceQueryPlaceholder.value = queryy;
+            }
+        }
+
+    }
+
+// DASHBOARD STATS
+    function loadStats(){
+
+        let statContainer = document.getElementsByClassName('stat-container');
+
+        statContainer[0].children[1].innerText = <?php echo outputQueryAmountOfEmployees(); ?>;
+        statContainer[1].children[1].innerText = <?php echo outputQueryAmountOfEmployeesPresent()?>;
+        statContainer[2].children[1].innerText = "<?php echo date('d') . " " . date('M') . " " . date('Y') ?>";
+
+    }
+
+// FILTER TABLE DATA
+
+    // placeholders
+    var queryPlaceholderDashboardTab = document.getElementById('queryPlaceholderDashboardTab');
+    var queryPlaceholderEmployeeTab = document.getElementById('queryPlaceholderEmployeeTab');
+    var queryPlaceholderPayrollTab = document.getElementById('queryPlaceholderPayrollTab');
+
+    var dashboardTabForm = document.getElementById('dashboardTabForm');
+    var employeeTabForm = document.getElementById('employeeTabForm');
+    var employeePayrollTabForm = document.getElementById('employeePayrollTabForm');
+
+    // id filter
+    var inputFilterFindID = document.getElementById('inputFilterFindID');
+
+    // form query string
+
+    function employeeTabFilter(x){
+        let querry;
+        if(x == 0){
+            querry = "select employee.emp_id, concat(employee.emp_firstname, ' ',employee.emp_middlename, ' ',employee.emp_lastname, ' ', employee.emp_extension) as emp_employeeName, salary.job_department, salary.job_position, att_month, att_day, att_year from employee join attendance_data on employee.emp_id=attendance_data.employee_id join salary on employee.emp_jobid=salary.job_id where att_day = '" + <?php echo date('d')?> + "' and att_month = '" + "<?php echo date('M')?>" + "' and att_year = '" + <?php echo date('Y')?> + "'";
+        }else if(x == 1){
+            querry = "select employee.emp_id, concat(employee.emp_firstname, ' ', employee.emp_middlename, ' ', employee.emp_lastname, ' ', employee.emp_extension) as emp_employeeName , employee.emp_extension, salary.job_department, salary.job_position, salary.job_wage FROM employee JOIN salary WHERE employee.emp_jobid=salary.job_id";
+        }else if(x == 2){
+            querry = "select employee.emp_id, employee.emp_firstname, employee.emp_middlename, employee.emp_lastname, employee.emp_extension, employee.emp_age, employee.emp_sex, employee.emp_address, employee.emp_email, employee.emp_contactNumber, salary.job_department, salary.job_position from employee join salary where employee.emp_jobid=salary.job_id";
+        }
+        
+        queryPlaceholderEmployeeTab.value = filterQueries(querry, x);
+    }
+    
+    <?php
+    // SEARCH FILTER BUTTON 
+    if(isset($_POST['filterSearchEmployeeTab'])){           // DOESNT WORK
+     
+        if($_SESSION['whatTabAmI'] == "dashboard"){
+            $_SESSION['dashboardSearchFiltered'] = "true";
+        }else if($_SESSION['whatTabAmI'] == "employee"){
+            $_SESSION['employeeSearchFiltered'] = "true";
+        }else if($_SESSION['whatTabAmI']== "employeeSalary"){
+            $_SESSION['employeeSalarySearchFiltered'] = "true";
+        }
+
+        $_SESSION['queryFilterPlaceholder'] = $_POST['queryPlaceholderEmployeeTab'];
+        ?> renderFilteredTables('<?php echo $_SESSION['whatTabAmI'] ?>' + 'Table');  // $_SESSION[''] <?php
+
+    }
+    
+    ?>
+
+    function filterQueries(querry, x){
+
+        let depart = departDropDownFilter.value;
+        let jobPosi = jobPosiDropDownFilter.value;
+        let emp_id = inputFilterFindID.value;
+
+        if(emp_id != ""){
+            querry = querry.concat(" and employee.emp_id = '" + emp_id);
+            querry = querry.concat("';");
+        }else if(depart != "" && depart != "All Department"){
+            querry = querry.concat(" and salary.job_department = '" + depart);
+
+            if(jobPosi != "Job Position"){
+                querry = querry.concat("' and salary.job_position = '" + jobPosi);
+            }
+
+            querry = querry.concat("';");
+        }else if(depart == "All Department" || depart == ""){
+        // default
+            if(x == 0){
+                querry = "select employee.emp_id, concat(employee.emp_firstname, ' ',employee.emp_middlename, ' ',employee.emp_lastname, ' ', employee.emp_extension) as emp_employeeName, salary.job_department, salary.job_position, att_month, att_day, att_year from employee join attendance_data on employee.emp_id=attendance_data.employee_id join salary on employee.emp_jobid=salary.job_id where att_day = " + '<?php echo date('d')?>' + " and att_month = '" + '<?php echo date('M')?>' + "' and att_year = '" + '<?php echo date('Y')?>' +"';";
+            }else if(x == 1){
+                querry = "select employee.emp_id, employee.emp_firstname, employee.emp_middlename, employee.emp_lastname, employee.emp_extension, employee.emp_age, employee.emp_sex, employee.emp_address, employee.emp_email, employee.emp_contactNumber, salary.job_department, salary.job_position from employee join salary where employee.emp_jobid=salary.job_id;"
+            }else if(x == 2){
+                querry = "select employee.emp_id, concat(employee.emp_firstname, ' ', employee.emp_middlename, ' ', employee.emp_lastname, ' ', employee.emp_extension) as emp_employeeName , employee.emp_extension, salary.job_department, salary.job_position, salary.job_wage FROM employee JOIN salary WHERE employee.emp_jobid=salary.job_id;";
+            }
+        }
+        
+        return querry;
+    };
 
 // LOAD AUTO
 
     window.addEventListener('load', () =>{
 
-        loadTable(dashboardButton);
-        loadTable(employeesButton);
-        loadTable(employeePayrollButton);
+        if("<?php echo $_SESSION['whatTabAmI']?>" == "dashboard"){
+            loadStats();
+ 
+            if("<?php echo $_SESSION['dashboardSearchFiltered']?>" == "false"){
+                loadTable("<?php echo $_SESSION['whatTabAmI']?>");                                  // $_SESSION OF WHAT I PRESSED
+            }        
+
+        }else if("<?php echo $_SESSION['whatTabAmI']?>" == "employee"){
+
+            if("<?php echo $_SESSION['employeeSearchFiltered']?>" == "false"){
+                loadTable("<?php echo $_SESSION['whatTabAmI']?>");
+            }        
+
+        }else if("<?php echo $_SESSION['whatTabAmI']?>" == "employeeSalary"){
+
+            if("<?php echo $_SESSION['employeeSalarySearchFiltered']?>" == "false"){
+                loadTable("<?php echo $_SESSION['whatTabAmI']?>");
+            }      
+
+        }
+
 
     });
 
+// CLEAR TABLE
+
+    function clearTable(){
+
+        let currentTab = employeeTable;
+
+        let tableChildren = currentTab.children.length;
+        for(let i = tableChildren - 1; i > -1; i--) {
+
+            currentTab.children[i].remove();
+
+        }
+
+    }
+    
 // LOAD TABLE
 
     function loadTable(currentTabb){                         
 
         let currentTab;
-        if(currentTabb.id === 'dashboardButton'){
+        if(currentTabb === 'dashboard'){
             currentTab = dashboardTable;
             outputATTENDANCE(currentTab);
-        }else if(currentTabb.id === 'employeesButton'){
+        }else if(currentTabb === 'employee'){
             currentTab = employeeTable;
             outputEMPLOYEE(currentTab);
-        }else if(currentTabb.id === 'employeePayrollButton'){
+        }else if(currentTabb === 'employeeSalary'){
             currentTab = employeeSalaryTable;
             outputPAYROLL(currentTab);
         }
@@ -95,7 +275,7 @@
     function outputATTENDANCE(currentTab){              
         let field = [];
         <?php 
-        $result = outputQueryAdminDashboard();                     // PASS $_SESSION for php mysql queries
+        $result = outputQueryEmployeesPresent();                     // PASS $_SESSION for php mysql queries
 
         while($field = $result->fetch_field()){?>                   // THE SAME AS FETCH ASSOC FOR ITTERATING
 
@@ -239,7 +419,7 @@
                             'att_present': '',
                             'att_year': 'Year',
                             'att_month': 'Month',
-                            'att_day': '',
+                            'att_day': 'Day',
                             'att_clockin': 'CLOCK IN TIME',
                             'att_clockout': 'CLOCK OUT TIME',
                             'att_total': 'Hours Worked'
@@ -256,12 +436,6 @@
 
                 return container;
             }
-
-            function removeTable(){                                             // run first if changing to new tab
-
-                
-
-            };
 
     // EMPLOYEE SALARY COMPUTATION
 
@@ -394,7 +568,6 @@
             addquery += x["Employee Registration"]["emp_address"] + "', '" + x["Employee Registration"]["emp_contactNumber"] + "', '" + x["Employee Registration"]["emp_email"] + "', '" +jobPosiID + "');"
 
         queryPlaceholderEmployeeTable.value = addquery;             // put query string to an input tag to send to php after submit
-        console.log(queryPlaceholderEmployeeTable.value);
     }
 
     function alterQueryAdminEmployeeTable(x){
@@ -415,7 +588,6 @@
             addquery += "', emp_jobid = '" + jobPosiID + "' where emp_id = '" + x["Employee Registration"]["emp_id"]+ "';";
 
         queryPlaceholderEmployeeTable.value = addquery;
-        console.log(queryPlaceholderEmployeeTable.value);
     }
 
     function alterQueryAdminPayroll(x){
@@ -433,8 +605,46 @@
         let addquery = "UPDATE salary SET job_wage = " + x['Payroll Data']['job_wage'] + " where job_id = " + jobPosiID + ";";
 
         queryPlaceholderEmployeePayroll.value = addquery;
-        console.log(queryPlaceholderEmployeePayroll.value);
+    }  
 
+
+    function renderFilteredTables(currentTabb){
+
+        let currentTab;
+        if(currentTabb === 'dashboardTable'){
+            currentTab = dashboardTable;
+        }else if(currentTabb === 'employeeTable'){
+            currentTab = employeeTable;
+        }else if(currentTabb === 'employeeSalaryTable'){
+            currentTab = employeeSalaryTable;
+        }
+        
+    // INPUT TABLE ROWS     
+
+        let field = [];
+        <?php 
+
+            $result = anyOutputQuery($_SESSION['queryFilterPlaceholder']);
+ 
+            while($field = $result->fetch_field()){?>                   // THE SAME AS FETCH ASSOC FOR ITTERATING
+
+                field.push("<?php echo $field->name ?>");                       // only get column name for display purposes
+
+            <?php } ?>;
+            loadTableData(field, currentTab, "");
+
+            let row = [];
+            <?php 
+            while ($row = $result->fetch_array()){ ?>                                   // loop for all record/row
+                row = [];
+                <?php
+                for($i = 0; $i < $result->field_count; $i++){ ?>                                // get array from php to js             // cant pass value staight
+                    row.push("<?php echo $row[$i] ?>");
+                <?php } ?>
+                
+                loadTableData(row, currentTab, field);
+
+            <?php } ?>;
     }
 
 </script>
@@ -444,6 +654,7 @@
 
     function outputQueryEmployeeTable(){
         $mysqlConn = mysqlCon();
+
         $queryy = "select employee.emp_id, employee.emp_firstname, employee.emp_middlename, employee.emp_lastname, employee.emp_extension, employee.emp_age, employee.emp_sex, employee.emp_address, employee.emp_email, employee.emp_contactNumber, salary.job_department, salary.job_position from employee join salary where employee.emp_jobid=salary.job_id;";
 
         $result = $mysqlConn->query($queryy);
@@ -463,17 +674,74 @@
         return $result;
     }
 
-    function outputQueryAdminDashboard(){
-
+    function outputQueryEmployeesPresent(){
         $mysqlConn = mysqlCon();
 
-        $queryy = "select employee.emp_id, concat(employee.emp_firstname, ' ', employee.emp_middlename, ' ', employee.emp_lastname, ' ', employee.emp_extension) as emp_employeeName, salary.job_department, salary.job_position FROM employee join salary where employee.emp_jobid = salary.job_id";
+        $day = date('d');
+        $month = date('M');
+        $year = date('Y');
+
+        $queryy = "select employee.emp_id, concat(employee.emp_firstname, ' ',employee.emp_middlename, ' ',employee.emp_lastname, ' ', employee.emp_extension) as emp_employeeName, salary.job_department, salary.job_position, att_month, att_day, att_year from employee join attendance_data on employee.emp_id=attendance_data.employee_id join salary on employee.emp_jobid=salary.job_id where att_day = ". $day ." and att_month = '". $month ."' and att_year = '". $year ."';";
 
         $result = $mysqlConn->query($queryy);   
 
         $mysqlConn->close();
         return $result;
 
+    }
+
+    function outputQueryAmountOfEmployees(){
+
+        $mysqlConn = mysqlCon();
+
+        $queryy = "select emp_id from employee";
+
+        $result = $mysqlConn->query($queryy);
+
+        $rowcount = mysqli_num_rows($result);
+
+        $mysqlConn->close();
+        return $rowcount;
+    }
+
+    function outputQueryAmountOfEmployeesPresent(){
+
+        $mysqlConn = mysqlCon();
+
+        $day = date('d');
+        $month = date('M');
+        $year = date('Y');
+    
+        $queryy = "select att_log from attendance_data where att_day = ". $day ." and att_month = '". $month ."' and att_year = '". $year ."' ;";
+
+        $result = $mysqlConn->query($queryy);   
+
+        $rowcount = mysqli_num_rows($result);
+
+        $mysqlConn->close();
+        return $rowcount;
+    }
+
+    function anyOutputQuery($queryy){
+        // THIS IS FKIN ANNOYINNG (one time its fine, then it wont shut up)
+
+        if($queryy == ""){
+            if($_SESSION['whatTabAmI'] == "employee"){
+            $queryy = "select employee.emp_id, employee.emp_firstname, employee.emp_middlename, employee.emp_lastname, employee.emp_extension, employee.emp_age, employee.emp_sex, employee.emp_address, employee.emp_email, employee.emp_contactNumber, salary.job_department, salary.job_position from employee join salary where employee.emp_jobid=salary.job_id;";
+            }else if($_SESSION['whatTabAmI'] == "employeeSalary"){
+                $queryy = "select employee.emp_id, concat(employee.emp_firstname, ' ', employee.emp_middlename, ' ', employee.emp_lastname, ' ', employee.emp_extension) as emp_employeeName , employee.emp_extension, salary.job_department, salary.job_position, salary.job_wage FROM employee JOIN salary WHERE employee.emp_jobid=salary.job_id;";
+            }else if($_SESSION['whatTabAmI'] == "dashboard"){
+                $queryy = "select employee.emp_id, concat(employee.emp_firstname, ' ',employee.emp_middlename, ' ',employee.emp_lastname, ' ', employee.emp_extension) as emp_employeeName, salary.job_department, salary.job_position, att_month, att_day, att_year from employee join attendance_data on employee.emp_id=attendance_data.employee_id join salary on employee.emp_jobid=salary.job_id where att_day = ". date('d') ." and att_month = '". date('M') ."' and att_year = '". date('Y') ."';";
+            } 
+        }
+
+        $mysqlConn = mysqlCon();
+
+        $result = $mysqlConn->query($queryy);// "select * from employee"
+        
+        $mysqlConn->close();
+
+        return $result;
     }
 
     function anyInsertQuery($queryy){                                   // must already structured

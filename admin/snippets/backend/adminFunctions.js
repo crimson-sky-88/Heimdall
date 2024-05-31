@@ -20,14 +20,13 @@
                 popUpData = popUpRowDataAccountCreate;
             }else if(passed === 1){
                 popUpData = popUpRowDataEmployee;
+                oneTimeSwitch = false;
                 }else if(passed === 2){
                 popUpData = popUpRowDataPayroll;
             }
             
             blockAndBlur.style.display = "none";
             popUpData.style.display = "none";
-
-            
 
         }
 
@@ -144,7 +143,7 @@
             return -1;
         }
 
-        var x = false;
+        var yeet = false;
     // change values of jobPositionDropDown
         function departmentSelectChanged(departValue){
 
@@ -181,13 +180,13 @@
                 }
             }
             
-            if(x){                                              // cheap ahh solution       // select seems to be buggy af
+            if(yeet){                                              // cheap ahh solution       // select seems to be buggy af
 
                 jobPosiDropDownPopUp[dropDownID].remove(1);
             
             }
             
-            x = true;
+            yeet = true;
 
         }
 
@@ -197,10 +196,10 @@
 
         }
 
-        function departmentClik(){
+        function departmentClik(x){
 
             // mysql query
-            departmentSelect(departDropDownFilter[0].value);
+            departmentSelect(departDropDownFilter.value, x);
 
         }
 
@@ -282,7 +281,6 @@
             blockAndBlur.style.display = "block";
             popUpRowDataAccountCreate.style.display = "block";
 
-            // mysql query
         }
 
     // EDIT DATA
@@ -294,38 +292,26 @@
                 dropDownID = 0;
                 blockAndBlur.style.display = "block";
                 loadPopUp(highlightedRoww, popUpRowDataEmployee, "editEmployee");
-                // mysql query
                 
             }
             
         }
 
-    // DELETE DATA
-
-        function deleteDataa(){
-
-            // mysql query
-
-            // load table
-            
-
-        }
-
 // EMPLOYEE PAYROLL TAB
     
-    var departDropDownFilter = document.getElementsByClassName('departDropDownFilter');             // 3 elements
-    var jobPosiDropDownFilter = document.getElementsByClassName('jobPosiDropDownFilter');
-    //var dropDownIDD;
+    var departDropDownFilter = document.getElementById('departDropDownFilter');             // 3 elements
+    var jobPosiDropDownFilter = document.getElementById('jobPosiDropDownFilter');
+    
+    var wew = false;
 
-function departmentSelect(departValue){
+function departmentSelect(departValue, x){
 
-    let dropDownIDDd = 0;
+    jobPosiDropDownFilter.selectedIndex = 0;
 
-    jobPosiDropDownFilter[dropDownIDDd].selectedIndex = 0;
+    for(let i = 1; i < jobPosiDropDownFilter.length; i++){                           // remove previous options
+        console.log(jobPosiDropDownFilter.children[i].value);
 
-    for(let i = 1; i < jobPosiDropDownFilter[dropDownIDDd].length; i++){                           // remove previous options
-
-        jobPosiDropDownFilter[dropDownIDDd].remove(i);
+        jobPosiDropDownFilter.remove(i);
 
     }
 
@@ -336,31 +322,31 @@ function departmentSelect(departValue){
         'Minecraft': ['Gatherer', 'Builder', 'Crafter', 'Adventurer']
     };
 
-    for(let i = 1; i < jobPosiDropDownFilter[dropDownIDDd].length; i++){                           // remove previous options
+    for(let i = 1; i < jobPosiDropDownFilter.length; i++){                           // remove previous options
 
-        jobPosiDropDownFilter[dropDownIDDd].remove(i);
+        jobPosiDropDownFilter.remove(i);
 
     }
 
-    if(departValue != "job_department"){
+    if(departValue != "Department" && departValue != "All Department"){
         for(let i = 0; i < lookupp[departValue].length; i++){
-        
+            
             var option = document.createElement('option');
             option.value = lookupp[departValue][i];
             option.innerHTML = lookupp[departValue][i];
 
-            jobPosiDropDownFilter[dropDownIDDd].appendChild(option);
+            jobPosiDropDownFilter.appendChild(option);
 
         }
     }
     
-    if(x){                                              // cheap ahh solution       // select seems to be buggy af
+    if(wew){                                              // cheap ahh solution       // select seems to be buggy af
 
-        jobPosiDropDownFilter[dropDownIDDd].remove(1);
+        jobPosiDropDownFilter.remove(1);
     
     }
     
-    x = true;
+    wew = true;
 
 }
 
@@ -440,7 +426,7 @@ function departmentSelect(departValue){
         // parse input data
             // text / password / email
         for(let i = 0; i < parseInputClass.length; i++){                                            // no need to check popUpDataInput is guaranteed to exist
-            console.log(parseInputClass[i].name + " " + parseInputClass[i].value);
+
             popUpDataInput[popUpId][parseInputClass[i].name] = parseInputClass[i].value;
 
         };
@@ -472,7 +458,7 @@ function departmentSelect(departValue){
 
     var whereAddingNow = false;
     function executePopUpAccCreate(){
-        highlightedRoww = "";                       //create function remove highlight
+        //highlightedRoww = "";                       //create function remove highlight
 
         collectQuery(getPopUpData(popUpRowDataAccountCreate));
 
@@ -501,7 +487,6 @@ function departmentSelect(departValue){
     }
 
     function executePopUpEditPayroll(){
-        alert("ADFDD");
 
         alterQueryAdminPayroll(collectQuery(getPopUpData(popUpRowDataPayroll)));
         resetObjectPlaceholder();                                                       // FINAL INPUT

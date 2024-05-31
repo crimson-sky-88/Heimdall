@@ -9,7 +9,7 @@
             <div class='form-description'>
                 <p>Please fill out the form to continue</p>
             </div>
-            <form action='admin-dashboard.php' method='post'>
+            <form action='admin-dashboard-employees.php' method='post'>
                 <div class='input-group-creation'>
                     <input type='text' class='popUpInputs' name='emp_username' placeholder='Username' >
                 </div>
