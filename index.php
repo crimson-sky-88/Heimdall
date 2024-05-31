@@ -35,11 +35,7 @@
                         <div class="form-header">
                             <h2>Sign in to continue</h2>
                         </div>
-<<<<<<< HEAD:index.php
                         <form action="index.php" method='post'>
-=======
-                        <form action="employee/employee-dashboard.html">
->>>>>>> 260518c0d4f95858bf813ffe19f41bc9f2dfb4a8:index.html
                             <div class="input-group">
                                 <input name='usernameInput' type="text" placeholder="Username">
                                 <img src="assets/input-group/person.svg" class="input-img">
@@ -57,19 +53,11 @@
                             <div class="input-button">
                                 <button type='submit' name='logInButt'>LOG IN</button>
                             </div>
-<<<<<<< HEAD:index.php
 <!--
                             <div class="register">
                                 <p>Don't have an account? <a href="">Register</a></p>
                             </div>
 -->
-=======
-                            <!-- 
-                            <div class="register">
-                            <p>Don't have an account? <a href="">Register</a></p>
-                            </div> 
-                            -->
->>>>>>> 260518c0d4f95858bf813ffe19f41bc9f2dfb4a8:index.html
                         </form>
 
                     </div>

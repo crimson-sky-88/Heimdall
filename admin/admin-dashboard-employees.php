@@ -43,25 +43,35 @@
             <div class='table-header'>
                 <h3 id='lemao'>Employees</h3>
             </div>
-            <form action='admin-dashboard-employees.php' method='post' id='employeeTabForm'>
-                <input type='text' id='queryPlaceholderEmployeeTab' name='queryPlaceholderEmployeeTab' style='display: none'>
-                <input type='number' id='inputFilterFindID' placeholder='Employee ID'>
-                <select id='departDropDownFilter' name='Department' onchange='departmentClik(1)'>
-                    <option value='' disabled selected>Department</option>
-                    <option value='All Department'>All Department</option>
-                    <option value='Albion Online'>Albion Online</option>
-                    <option value='League of Legends'>League of Legends</option>
-                    <option value='Minecraft'>Minecraft</option>
-                </select>
-                <select id='jobPosiDropDownFilter' name='Job Position'>
-                    <option value='Job Position' disabled selected>Job Position</option>
-                </select>
-                <button type='submit' onclick="employeeTabFilter(1)" name='filterSearchEmployeeTab'> SEARCH </button>
+            <form action='admin-dashboard-employees.php' method='post' id='employeeTabForm' class="search-bar">
+                <div class="search-filters">
+                    <div >
+                        <input type='text' id='queryPlaceholderEmployeeTab' name='queryPlaceholderEmployeeTab' style='display: none'>
+                    </div>
+                    <div class="search-input">
+                        <input type='number' id='inputFilterFindID' placeholder='Employee ID'>
+                    </div>
+                    <div class="search-filters-select">
+                        <select id='departDropDownFilter' name='Department' onchange='departmentClik(1)'>
+                            <option value='' disabled selected>Department</option>
+                            <option value='All Department'>All Department</option>
+                            <option value='Albion Online'>Albion Online</option>
+                            <option value='League of Legends'>League of Legends</option>
+                            <option value='Minecraft'>Minecraft</option>
+                        </select>
+                    </div>
+                    <div class="search-filters-select">
+                        <select id='jobPosiDropDownFilter' name='Job Position'>
+                            <option value='Job Position' disabled selected>Job Position</option>
+                        </select>
+                    </div>
+                </div>
+                <button type='submit' onclick="employeeTabFilter(1)" name='filterSearchEmployeeTab' class="search-button"> SEARCH </button>
             </form>
             <div class='table-container'>
-            <table id='employeeTable'>
+                <table id='employeeTable'>
 
-            </table>
+                </table>
             </div>
             <div class='table-controls'>
                 <form action='admin-dashboard-employees.php' method="post">

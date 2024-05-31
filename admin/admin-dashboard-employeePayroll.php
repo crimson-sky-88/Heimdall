@@ -26,7 +26,7 @@
             <div class="function-nav">
                 <h3>Navigation</h3>
                 <form action="admin-dashboard.php" method="post">
-                    <button id='dashboardButton' name='dashboardButton' type="button">Dashboard</button>        <!-- REMOVE NAME ATTRIBUTE-->
+                    <button id='dashboardButton' name='dashboardButton' type="button">Dashboard</button>
                     <button id='employeesButton' name='employeesButton' type="button">Employees</button>
                     <button id='employeePayrollButton' name='employeePayrollButton' type="button">Employee Payroll</button>
                     <button id='logOutButton' type="button">Log Out</button>
@@ -47,20 +47,30 @@
                 <h3>Employee Payroll</h3>
             </div>
 
-            <form action='admin-dashboard-employeePayroll.php' method='post' id='employeeTabForm'>
-                <input type='text' id='queryPlaceholderEmployeeTab' name='queryPlaceholderEmployeeTab'  style='display:none'>
-                <input type='number' id='inputFilterFindID' placeholder='Employee ID'>
-                <select id='departDropDownFilter' name='Department' onchange='departmentClik(0)'>
-                    <option value='' disabled selected>Department</option>
-                    <option value='All Department'>All Department</option>
-                    <option value='Albion Online'>Albion Online</option>
-                    <option value='League of Legends'>League of Legends</option>
-                    <option value='Minecraft'>Minecraft</option>
-                </select>
-                <select id='jobPosiDropDownFilter' name='Job Position'>
-                    <option value='Job Position' disabled selected>Job Position</option>
-                </select>
-                <button type='submit' onclick='employeeTabFilter(2)' name='filterSearchEmployeeTab'> SEARCH </button>
+            <form action='admin-dashboard-employeePayroll.php' method='post' id='employeeTabForm' class="search-bar">
+            <div class="search-filters">
+                    <div >
+                        <input type='text' id='queryPlaceholderEmployeeTab' name='queryPlaceholderEmployeeTab' style='display: none'>
+                    </div>
+                    <div class="search-input">
+                        <input type='number' id='inputFilterFindID' placeholder='Employee ID'>
+                    </div>
+                    <div class="search-filters-select">
+                        <select id='departDropDownFilter' name='Department' onchange='departmentClik(0)'>
+                            <option value='' disabled selected>Department</option>
+                            <option value='All Department'>All Department</option>
+                            <option value='Albion Online'>Albion Online</option>
+                            <option value='League of Legends'>League of Legends</option>
+                            <option value='Minecraft'>Minecraft</option>
+                        </select>
+                    </div>
+                    <div class="search-filters-select">
+                        <select id='jobPosiDropDownFilter' name='Job Position'>
+                            <option value='Job Position' disabled selected>Job Position</option>
+                        </select>
+                    </div>
+                </div>
+                <button type='submit' onclick='employeeTabFilter(2)' name='filterSearchEmployeeTab' class="search-button"> SEARCH </button>
             </form>
             <div class='table-container'>        
             <table id = 'employeeSalaryTable'>
